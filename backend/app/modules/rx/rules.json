@@ -1,0 +1,31 @@
+{
+  "_comment": "Drug rules for CKD safety checks. Drafted from public guidance (KDIGO CKD 2024, BNF-style renal dosing summaries). A DOCTOR OR PHARMACIST MUST REVIEW AND OWN THIS FILE before any real use. Doses are mg per day unless noted.",
+  "formulary": {
+    "ramipril":      {"name": "Ramipril", "class": "ace_inhibitor", "patient_label": "a kidney-protecting blood pressure medicine (ACE inhibitor)", "typical": {"dose_mg": 2.5, "times_per_day": 1}, "max_mg_day": 10, "renal_max": [{"egfr_lt": 60, "max_mg_day": 5}], "monitor": "Check potassium and creatinine 1-2 weeks after starting or changing the dose."},
+    "enalapril":     {"name": "Enalapril", "class": "ace_inhibitor", "patient_label": "a kidney-protecting blood pressure medicine (ACE inhibitor)", "typical": {"dose_mg": 5, "times_per_day": 1}, "max_mg_day": 40, "renal_max": [{"egfr_lt": 30, "max_mg_day": 20}], "monitor": "Check potassium and creatinine 1-2 weeks after starting or changing the dose."},
+    "losartan":      {"name": "Losartan", "class": "arb", "patient_label": "a kidney-protecting blood pressure medicine (ARB)", "typical": {"dose_mg": 50, "times_per_day": 1}, "max_mg_day": 100, "renal_max": [], "monitor": "Check potassium and creatinine 1-2 weeks after starting or changing the dose."},
+    "telmisartan":   {"name": "Telmisartan", "class": "arb", "patient_label": "a kidney-protecting blood pressure medicine (ARB)", "typical": {"dose_mg": 40, "times_per_day": 1}, "max_mg_day": 80, "renal_max": [], "monitor": "Check potassium and creatinine 1-2 weeks after starting or changing the dose."},
+    "amlodipine":    {"name": "Amlodipine", "class": "ccb", "patient_label": "a blood pressure medicine (calcium channel blocker)", "typical": {"dose_mg": 5, "times_per_day": 1}, "max_mg_day": 10, "renal_max": [], "monitor": "Watch for ankle swelling."},
+    "furosemide":    {"name": "Furosemide", "class": "loop_diuretic", "patient_label": "a water tablet (diuretic)", "typical": {"dose_mg": 40, "times_per_day": 1}, "max_mg_day": null, "renal_max": [], "monitor": "Check salts (sodium, potassium) and kidney function; dose depends on swelling."},
+    "spironolactone":{"name": "Spironolactone", "class": "mra", "patient_label": "a potassium-sparing medicine", "typical": {"dose_mg": 25, "times_per_day": 1}, "max_mg_day": 100, "renal_max": [{"egfr_lt": 30, "max_mg_day": 25}], "monitor": "High risk of high potassium; check potassium within 1 week."},
+    "dapagliflozin": {"name": "Dapagliflozin", "class": "sglt2", "patient_label": "a kidney- and heart-protecting medicine (SGLT2 inhibitor)", "typical": {"dose_mg": 10, "times_per_day": 1}, "max_mg_day": 10, "renal_max": [], "min_egfr_start": 20, "monitor": "Pause during vomiting, diarrhoea or other acute illness (sick-day rule); genital hygiene."},
+    "empagliflozin": {"name": "Empagliflozin", "class": "sglt2", "patient_label": "a kidney- and heart-protecting medicine (SGLT2 inhibitor)", "typical": {"dose_mg": 10, "times_per_day": 1}, "max_mg_day": 25, "renal_max": [], "min_egfr_start": 20, "monitor": "Pause during vomiting, diarrhoea or other acute illness (sick-day rule); genital hygiene."},
+    "metformin":     {"name": "Metformin", "class": "biguanide", "patient_label": "a diabetes medicine (metformin)", "typical": {"dose_mg": 500, "times_per_day": 2}, "max_mg_day": 2000, "renal_max": [{"egfr_lt": 45, "max_mg_day": 1000}], "contraindicated_egfr_lt": 30, "monitor": "Stop in acute illness or before contrast scans; review dose when eGFR falls below 45."},
+    "atorvastatin":  {"name": "Atorvastatin", "class": "statin", "patient_label": "a cholesterol medicine (statin)", "typical": {"dose_mg": 20, "times_per_day": 1}, "max_mg_day": 80, "renal_max": [], "monitor": "Report unexplained muscle pain."},
+    "rosuvastatin":  {"name": "Rosuvastatin", "class": "statin", "patient_label": "a cholesterol medicine (statin)", "typical": {"dose_mg": 10, "times_per_day": 1}, "max_mg_day": 40, "renal_max": [{"egfr_lt": 30, "max_mg_day": 10}], "monitor": "Report unexplained muscle pain."},
+    "potassium_chloride": {"name": "Potassium chloride", "class": "potassium_supplement", "patient_label": "a potassium supplement", "typical": {"dose_mg": 600, "times_per_day": 2}, "max_mg_day": null, "renal_max": [], "monitor": "Needs close potassium monitoring in CKD."},
+    "ibuprofen":     {"name": "Ibuprofen", "class": "nsaid", "patient_label": "a pain-killer of the NSAID type", "typical": {"dose_mg": 400, "times_per_day": 3}, "max_mg_day": 1200, "renal_max": [], "monitor": ""},
+    "diclofenac":    {"name": "Diclofenac", "class": "nsaid", "patient_label": "a pain-killer of the NSAID type", "typical": {"dose_mg": 50, "times_per_day": 2}, "max_mg_day": 150, "renal_max": [], "monitor": ""},
+    "naproxen":      {"name": "Naproxen", "class": "nsaid", "patient_label": "a pain-killer of the NSAID type", "typical": {"dose_mg": 250, "times_per_day": 2}, "max_mg_day": 1000, "renal_max": [], "monitor": ""}
+  },
+  "potassium_warn": 5.5,
+  "potassium_block": 6.0,
+  "kdigo_monitoring_per_year": {
+    "G1": {"A1": 1, "A2": 1, "A3": 2},
+    "G2": {"A1": 1, "A2": 1, "A3": 2},
+    "G3a": {"A1": 1, "A2": 2, "A3": 3},
+    "G3b": {"A1": 2, "A2": 3, "A3": 3},
+    "G4": {"A1": 3, "A2": 3, "A3": 4},
+    "G5": {"A1": 4, "A2": 4, "A3": 4}
+  }
+}

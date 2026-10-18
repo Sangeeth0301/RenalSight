@@ -9,7 +9,7 @@ data/raw/
 dist/
 test-results/
 playwright-report/
-screens/
+/screens/
 frontend/web/screens/
 
 bridge/profile/

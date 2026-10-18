@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" width="1100" height="420" role="img" aria-label="Donor appeal: from a hospital name to one-click sharing">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+<rect width="1100" height="420" rx="18" fill="#ffffff"/><rect x="1" y="1" width="1098" height="418" rx="17" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+<text x="28" y="40" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="22" font-weight="700" fill="#0f172a">Donor appeal: from a hospital name to one-click sharing</text>
+<rect x="28" y="80" width="190" height="96" rx="12" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.6"/>
+<text x="123.0" y="106" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Family types</text>
+<text x="123.0" y="128" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">hospital (AIIMS, KMCH,</text>
+<text x="123.0" y="146" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">a Kolkata hospital...),</text>
+<text x="123.0" y="164" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">patient, blood group, phone</text>
+<rect x="262" y="80" width="190" height="96" rx="12" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.6"/>
+<text x="357.0" y="106" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Composer</text>
+<text x="357.0" y="128" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">polished message in 4</text>
+<text x="357.0" y="146" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">languages and 3 tones;</text>
+<text x="357.0" y="164" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">AI polish with fact check</text>
+<rect x="496" y="80" width="190" height="96" rx="12" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+<text x="591.0" y="106" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">One click</text>
+<text x="591.0" y="128" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">WhatsApp, Telegram, SMS,</text>
+<text x="591.0" y="146" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">e-mail, or the local</text>
+<text x="591.0" y="164" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">bridge to chosen chats</text>
+<rect x="730" y="80" width="170" height="96" rx="12" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+<text x="815.0" y="106" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Public page + QR</text>
+<text x="815.0" y="128" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">masked phone, scam</text>
+<text x="815.0" y="146" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">warning, offers with</text>
+<text x="815.0" y="164" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">consent</text>
+<rect x="920" y="80" width="152" height="96" rx="12" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.6"/>
+<text x="996.0" y="106" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Coordinator</text>
+<text x="996.0" y="128" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">doctor or admin</text>
+<text x="996.0" y="146" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">verifies the request</text>
+<line x1="220" y1="128" x2="260" y2="128" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<line x1="454" y1="128" x2="494" y2="128" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<line x1="688" y1="128" x2="728" y2="128" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<line x1="902" y1="128" x2="918" y2="128" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<rect x="262" y="230" width="190" height="80" rx="12" fill="#ffe4e6" stroke="#be123c" stroke-width="1.6"/>
+<text x="357.0" y="256" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">ABO matching</text>
+<text x="357.0" y="278" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">kidney: ABO matters,</text>
+<text x="357.0" y="296" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">Rh does not; HLA by hospital</text>
+<rect x="496" y="230" width="190" height="80" rx="12" fill="#ffe4e6" stroke="#be123c" stroke-width="1.6"/>
+<text x="591.0" y="256" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Donor registry</text>
+<text x="591.0" y="278" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">living: kidney, liver</text>
+<text x="591.0" y="296" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">after death: heart, kidney...</text>
+<rect x="730" y="220" width="342" height="96" rx="12" fill="#e2e8f0" stroke="#334155" stroke-width="1.6"/>
+<text x="901.0" y="246" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Safeguards</text>
+<text x="901.0" y="268" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">no payments or prices, consent first,</text>
+<text x="901.0" y="286" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">rate-limited public form, hospital names</text>
+<text x="901.0" y="304" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">are directory-only until an admin verifies</text>
+<line x1="357" y1="178" x2="357" y2="228" stroke="#64748b" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#a)"/>
+<line x1="591" y1="178" x2="591" y2="228" stroke="#64748b" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#a)"/>
+<text x="28" y="360" text-anchor="start" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#0f172a">Organs are never bought or sold. Hearts and most organs are deceased-donor pledges handled through hospital waitlists, not public appeals.</text>
+<text x="28" y="388" text-anchor="start" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="13" font-weight="500" fill="#64748b">Phone numbers are never shown in full on public pages; each donor is still evaluated by the hospital's transplant team and committee.</text>
+</svg>

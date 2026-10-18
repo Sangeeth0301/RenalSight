@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 640" width="1100" height="640" role="img" aria-label="RenalSight: system architecture">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+<rect width="1100" height="640" rx="18" fill="#ffffff"/><rect x="1" y="1" width="1098" height="638" rx="17" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+<text x="28" y="40" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="22" font-weight="700" fill="#0f172a">RenalSight: system architecture</text>
+<rect x="24" y="62" width="1052" height="130" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="5 5"/>
+<text x="38" y="84" text-anchor="start" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#64748b">BROWSER  ·  React 18, Vite, Tailwind, TypeScript  ·  installable PWA that opens offline</text>
+<rect x="44" y="96" width="190" height="76" rx="12" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.6"/>
+<text x="139.0" y="122" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Patient app</text>
+<text x="139.0" y="144" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">Living Kidney, forecast,</text>
+<text x="139.0" y="162" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">care plan, Rx, Buddy</text>
+<rect x="250" y="96" width="190" height="76" rx="12" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.6"/>
+<text x="345.0" y="122" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Doctor console</text>
+<text x="345.0" y="144" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">dashboard, patient record,</text>
+<text x="345.0" y="162" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">review queue, schedule</text>
+<rect x="456" y="96" width="190" height="76" rx="12" fill="#ffe4e6" stroke="#be123c" stroke-width="1.6"/>
+<text x="551.0" y="122" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Transplant hub</text>
+<text x="551.0" y="144" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">donor appeals, registry,</text>
+<text x="551.0" y="162" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">hospitals, journey</text>
+<rect x="662" y="96" width="190" height="76" rx="12" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.6"/>
+<text x="757.0" y="122" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Chat and rooms</text>
+<text x="757.0" y="144" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">live WebSocket chat,</text>
+<text x="757.0" y="162" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">AI translation toggle</text>
+<rect x="868" y="96" width="190" height="76" rx="12" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+<text x="963.0" y="122" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">4 languages</text>
+<text x="963.0" y="144" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">English, Tamil, Bengali,</text>
+<text x="963.0" y="162" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">Telugu (offline switch)</text>
+<line x1="550" y1="192" x2="550" y2="232" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<text x="550.0" y="205.0" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="11.5" fill="#475569">REST + WebSocket (JWT)</text>
+<rect x="24" y="236" width="1052" height="250" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="5 5"/>
+<text x="38" y="258" text-anchor="start" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#64748b">FASTAPI BACKEND  ·  Python  ·  one module per domain</text>
+<rect x="40" y="266" width="118" height="56" rx="12" fill="#e2e8f0" stroke="#334155" stroke-width="1.6"/>
+<text x="99.0" y="292" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">auth, labs</text>
+<text x="99.0" y="314" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">clinical</text>
+<rect x="168" y="266" width="118" height="56" rx="12" fill="#e2e8f0" stroke="#334155" stroke-width="1.6"/>
+<text x="227.0" y="292" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">rx studio</text>
+<text x="227.0" y="314" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">safety engine</text>
+<rect x="296" y="266" width="118" height="56" rx="12" fill="#e2e8f0" stroke="#334155" stroke-width="1.6"/>
+<text x="355.0" y="292" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">doctor</text>
+<text x="355.0" y="314" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">notifications</text>
+<rect x="424" y="266" width="118" height="56" rx="12" fill="#e2e8f0" stroke="#334155" stroke-width="1.6"/>
+<text x="483.0" y="292" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">connect</text>
+<text x="483.0" y="314" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">chat, rooms</text>
+<rect x="552" y="266" width="118" height="56" rx="12" fill="#e2e8f0" stroke="#334155" stroke-width="1.6"/>
+<text x="611.0" y="292" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">population</text>
+<text x="611.0" y="314" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">pulse</text>
+<rect x="680" y="266" width="118" height="56" rx="12" fill="#e2e8f0" stroke="#334155" stroke-width="1.6"/>
+<text x="739.0" y="292" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">transplant</text>
+<text x="739.0" y="314" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">donors, share</text>
+<rect x="808" y="266" width="118" height="56" rx="12" fill="#e2e8f0" stroke="#334155" stroke-width="1.6"/>
+<text x="867.0" y="292" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">translate</text>
+<text x="867.0" y="314" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">cache</text>
+<rect x="936" y="266" width="118" height="56" rx="12" fill="#e2e8f0" stroke="#334155" stroke-width="1.6"/>
+<text x="995.0" y="292" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">agents</text>
+<text x="995.0" y="314" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">inbox, jobs</text>
+<rect x="40" y="342" width="330" height="92" rx="12" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.6"/>
+<text x="205.0" y="368" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Tool registry</text>
+<text x="205.0" y="390" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">one function = one REST button AND one AI tool</text>
+<text x="205.0" y="408" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">role-gated; the AI can only call read tools</text>
+<text x="205.0" y="426" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">or create drafts and approval tasks</text>
+<rect x="386" y="342" width="330" height="92" rx="12" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.6"/>
+<text x="551.0" y="368" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">LLM router</text>
+<text x="551.0" y="390" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">Groq, Gemini, OpenAI, Grok, Ollama</text>
+<text x="551.0" y="408" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">provider to provider on quota or error,</text>
+<text x="551.0" y="426" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">then rule-based answers (no AI needed)</text>
+<rect x="732" y="342" width="330" height="92" rx="12" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+<text x="897.0" y="368" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">WhatsApp bridge (local)</text>
+<text x="897.0" y="390" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">drives your own WhatsApp Web in Chrome</text>
+<text x="897.0" y="408" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">exact-name allowlist, 6 sends / hour</text>
+<text x="897.0" y="426" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">audit log on every send</text>
+<line x1="550" y1="486" x2="550" y2="524" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<rect x="60" y="528" width="240" height="84" rx="12" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+<text x="180.0" y="554" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">SQLite</text>
+<text x="180.0" y="576" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">users, labs, Rx, chat,</text>
+<text x="180.0" y="594" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">requests, pledges, audit</text>
+<rect x="330" y="528" width="240" height="84" rx="12" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.6"/>
+<text x="450.0" y="554" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Trained models</text>
+<text x="450.0" y="576" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">XGBoost + SHAP detector,</text>
+<text x="450.0" y="594" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">Cox survival, forecast</text>
+<rect x="600" y="528" width="240" height="84" rx="12" fill="#ffe4e6" stroke="#be123c" stroke-width="1.6"/>
+<text x="720.0" y="554" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Datasets</text>
+<text x="720.0" y="576" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">NHANES, UCI CKD,</text>
+<text x="720.0" y="594" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">UN / World Bank, GBD anchor</text>
+<rect x="870" y="528" width="190" height="84" rx="12" fill="#e2e8f0" stroke="#334155" stroke-width="1.6"/>
+<text x="965.0" y="554" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">MCP server</text>
+<text x="965.0" y="576" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">compose, link, create</text>
+<text x="965.0" y="594" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">request tools</text>
+</svg>

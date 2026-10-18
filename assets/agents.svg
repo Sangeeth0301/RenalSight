@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 470" width="1100" height="470" role="img" aria-label="Data sources and the agentic helpers">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+<rect width="1100" height="470" rx="18" fill="#ffffff"/><rect x="1" y="1" width="1098" height="468" rx="17" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+<text x="28" y="40" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="22" font-weight="700" fill="#0f172a">Data sources and the agentic helpers</text>
+<rect x="24" y="62" width="520" height="380" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="5 5"/>
+<text x="38" y="84" text-anchor="start" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#64748b">DATA  -&gt;  MODELS</text>
+<rect x="44" y="96" width="230" height="70" rx="12" fill="#ffe4e6" stroke="#be123c" stroke-width="1.6"/>
+<text x="159.0" y="122" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">NHANES 2005-2014</text>
+<text x="159.0" y="144" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">labs, BP, diabetes, linked mortality</text>
+<rect x="294" y="96" width="230" height="70" rx="12" fill="#ffe4e6" stroke="#be123c" stroke-width="1.6"/>
+<text x="409.0" y="122" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">UCI CKD (demo)</text>
+<text x="409.0" y="144" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">400 labelled records</text>
+<rect x="44" y="190" width="230" height="70" rx="12" fill="#ffe4e6" stroke="#be123c" stroke-width="1.6"/>
+<text x="159.0" y="216" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">UN + World Bank</text>
+<text x="159.0" y="238" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">age-sex population projections</text>
+<rect x="294" y="190" width="230" height="70" rx="12" fill="#ffe4e6" stroke="#be123c" stroke-width="1.6"/>
+<text x="409.0" y="216" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">GBD 2023 anchor</text>
+<text x="409.0" y="238" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">138 M cases in India (calibration)</text>
+<line x1="284" y1="270" x2="284" y2="300" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<rect x="44" y="304" width="230" height="110" rx="12" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.6"/>
+<text x="159.0" y="330" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">ML pipeline (ml/src)</text>
+<text x="159.0" y="352" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">CKD-EPI, KDIGO, KFRE</text>
+<text x="159.0" y="370" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">XGBoost detector + SHAP</text>
+<text x="159.0" y="388" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">Cox survival, simulated</text>
+<text x="159.0" y="406" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">follow-up, forecast</text>
+<rect x="294" y="304" width="230" height="110" rx="12" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.6"/>
+<text x="409.0" y="330" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Population Pulse</text>
+<text x="409.0" y="352" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">cases by region and year,</text>
+<text x="409.0" y="370" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">stages, care needs,</text>
+<text x="409.0" y="388" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">scenarios, capacity gap</text>
+<rect x="566" y="62" width="510" height="380" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="5 5"/>
+<text x="580" y="84" text-anchor="start" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#64748b">AGENTIC HELPERS  (same tool registry)</text>
+<rect x="586" y="96" width="230" height="70" rx="12" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.6"/>
+<text x="701.0" y="122" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Nephro Buddy</text>
+<text x="701.0" y="144" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">patients: simple, translated answers</text>
+<rect x="836" y="96" width="220" height="70" rx="12" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.6"/>
+<text x="946.0" y="122" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Doctor Copilot</text>
+<text x="946.0" y="144" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">ranks patients, drafts messages</text>
+<rect x="586" y="190" width="230" height="70" rx="12" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+<text x="701.0" y="216" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Outreach assistant</text>
+<text x="701.0" y="238" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">plans screening camps</text>
+<rect x="836" y="190" width="220" height="70" rx="12" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.6"/>
+<text x="946.0" y="216" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Population Analyst</text>
+<text x="946.0" y="238" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">how many, where, by when</text>
+<line x1="820" y1="270" x2="820" y2="300" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<rect x="586" y="304" width="470" height="110" rx="12" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+<text x="821.0" y="330" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Human-in-the-loop</text>
+<text x="821.0" y="352" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">helpers read data and call tools; anything that writes becomes a draft or an</text>
+<text x="821.0" y="370" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">approval task in the Helper inbox. Doses are filtered out of AI replies.</text>
+<text x="821.0" y="388" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">Providers fall back automatically; with no keys the app answers from saved data.</text>
+</svg>

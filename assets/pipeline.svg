@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 330" width="1100" height="330" role="img" aria-label="From lab values to a care plan a doctor signs">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+<rect width="1100" height="330" rx="18" fill="#ffffff"/><rect x="1" y="1" width="1098" height="328" rx="17" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+<text x="28" y="40" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="22" font-weight="700" fill="#0f172a">From lab values to a care plan a doctor signs</text>
+<rect x="28" y="90" width="160" height="110" rx="12" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.6"/>
+<text x="108.0" y="116" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">1  Add labs</text>
+<text x="108.0" y="138" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">type, paste, upload a</text>
+<text x="108.0" y="156" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">report, or pick a real</text>
+<text x="108.0" y="174" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">sample record</text>
+<line x1="190" y1="145" x2="203" y2="145" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<rect x="205" y="90" width="160" height="110" rx="12" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.6"/>
+<text x="285.0" y="116" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">2  Detect + stage</text>
+<text x="285.0" y="138" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">CKD-EPI 2021 eGFR,</text>
+<text x="285.0" y="156" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">KDIGO G / A stage,</text>
+<text x="285.0" y="174" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">XGBoost + SHAP reasons</text>
+<line x1="367" y1="145" x2="380" y2="145" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<rect x="382" y="90" width="160" height="110" rx="12" fill="#ffe4e6" stroke="#be123c" stroke-width="1.6"/>
+<text x="462.0" y="116" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">3  Living Kidney</text>
+<text x="462.0" y="138" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">wounds mapped to real</text>
+<text x="462.0" y="156" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">labs: cracks, leaks,</text>
+<text x="462.0" y="174" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">swollen veins, pallor</text>
+<line x1="544" y1="145" x2="557" y2="145" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<rect x="559" y="90" width="160" height="110" rx="12" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.6"/>
+<text x="639.0" y="116" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">4  Forecast</text>
+<text x="639.0" y="138" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">Monte-Carlo eGFR paths,</text>
+<text x="639.0" y="156" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">years-to-failure range,</text>
+<text x="639.0" y="174" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">KFRE-calibrated prior</text>
+<line x1="721" y1="145" x2="734" y2="145" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<rect x="736" y="90" width="160" height="110" rx="12" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+<text x="816.0" y="116" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">5  Draft plan</text>
+<text x="816.0" y="138" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">care plan + draft Rx</text>
+<text x="816.0" y="156" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">from KDIGO-style rules,</text>
+<text x="816.0" y="174" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">safety engine checks</text>
+<line x1="898" y1="145" x2="911" y2="145" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<rect x="913" y="90" width="160" height="110" rx="12" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+<text x="993.0" y="116" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">6  Doctor signs</text>
+<text x="993.0" y="138" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">review, override with a</text>
+<text x="993.0" y="156" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">written reason, e-sign,</text>
+<text x="993.0" y="174" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">PDF for the patient</text>
+<text x="28" y="250" text-anchor="start" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#0f172a">Never an exact date of death: only time-to-kidney-failure ranges and group-level survival from NHANES.</text>
+<text x="28" y="276" text-anchor="start" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#0f172a">Unsigned prescriptions are drafts: patients never see doses until a doctor reviews and signs.</text>
+<text x="28" y="302" text-anchor="start" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="13" font-weight="500" fill="#64748b">All forecasts are labelled estimates; the model is calibrated on simulated follow-up because no free real follow-up set exists.</text>
+</svg>

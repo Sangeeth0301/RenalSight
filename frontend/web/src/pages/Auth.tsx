@@ -37,17 +37,39 @@ export function Login() {
     } finally { setBusy(false); }
   };
 
+  const local = typeof window !== "undefined" && ["localhost", "127.0.0.1"].includes(window.location.hostname);
+  const demo = (e: string) => { setEmail(e); setPassword("Demo@12345"); setErr(""); };
   return (
-    <div className="min-h-full bg-bg">
+    <div className="min-h-full">
       <PublicBar />
-      <main className="mx-auto grid max-w-md px-4 py-12">
-        <Card>
-          <h1 className="mb-4 text-2xl font-bold">{t("auth.signIn")}</h1>
+      <main className="mx-auto grid max-w-[1100px] items-center gap-8 px-4 py-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,420px)]">
+        <section className="hidden lg:block">
+          <p className="chip mb-4 bg-accent-soft text-ink">{t("app.tagline")}</p>
+          <h2 className="font-display text-4xl font-extrabold leading-tight"><span className="text-gradient">{t("landing.heroTitle")}</span></h2>
+          <p className="mt-4 max-w-md text-lg text-muted">{t("landing.heroSub")}</p>
+          <div className="mt-8 grid max-w-md gap-3">
+            {[["Patients", "See your Living Kidney, forecast, care plan and doctor messages."], ["Doctors", "Rank every patient by severity and open any record in one click."], ["Families", "Find donors and share a polished appeal in one tap."]].map(([h, b]) => (
+              <div key={h} className="card flex items-start gap-3 p-4"><span className="mt-0.5 h-2.5 w-2.5 shrink-0 rounded-full" style={{ backgroundImage: "linear-gradient(135deg,var(--accent),var(--accent-2))" }} /><p><b>{h}.</b> <span className="text-muted">{b}</span></p></div>
+            ))}
+          </div>
+        </section>
+        <Card className="ring-glow">
+          <h1 className="mb-4 font-display text-2xl font-bold">{t("auth.signIn")}</h1>
           <form onSubmit={submit} className="space-y-4">
             <Field label={t("auth.email")} htmlFor="email"><input id="email" data-testid="email" type="email" required autoComplete="email" className="input" value={email} onChange={(e) => setEmail(e.target.value)} /></Field>
             <Field label={t("auth.password")} htmlFor="password" error={err}><input id="password" data-testid="password" type="password" required autoComplete="current-password" className="input" value={password} onChange={(e) => setPassword(e.target.value)} /></Field>
             <button className="btn-primary w-full" disabled={busy} data-testid="submit">{busy ? <Spinner className="text-white" /> : t("auth.signIn")}</button>
           </form>
+          {local && (
+            <div className="mt-5 rounded-xl border border-dashed border-line p-3" data-testid="demo-fill">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">Local demo</p>
+              <div className="flex flex-wrap gap-2">
+                <button type="button" className="btn-soft !min-h-[38px] text-sm" onClick={() => demo("asha@example.com")}>Patient: Asha</button>
+                <button type="button" className="btn-soft !min-h-[38px] text-sm" onClick={() => demo("dr.rao@example.com")}>Doctor: Dr. Rao</button>
+              </div>
+              <p className="mt-2 text-xs text-muted">Fills the demo credentials; press Sign in.</p>
+            </div>
+          )}
           <p className="mt-4 text-center text-sm text-muted">{t("auth.noAccount")} <Link to="/register" className="font-semibold text-accent">{t("auth.register")}</Link></p>
         </Card>
       </main>

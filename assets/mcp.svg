@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 400" width="1100" height="400" role="img" aria-label="MCP: let an AI assistant draft and share the appeal">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+<rect width="1100" height="400" rx="18" fill="#ffffff"/><rect x="1" y="1" width="1098" height="398" rx="17" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+<text x="28" y="40" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="22" font-weight="700" fill="#0f172a">MCP: let an AI assistant draft and share the appeal</text>
+<rect x="28" y="90" width="200" height="100" rx="12" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.6"/>
+<text x="128.0" y="116" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">AI assistant</text>
+<text x="128.0" y="138" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">any MCP client:</text>
+<text x="128.0" y="156" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">"Ask KMCH Coimbatore for a</text>
+<text x="128.0" y="174" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">kidney donor for Ravi, B+..."</text>
+<rect x="268" y="90" width="220" height="100" rx="12" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.6"/>
+<text x="378.0" y="116" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">RenalSight MCP server</text>
+<text x="378.0" y="138" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">mcp_server/server.py</text>
+<text x="378.0" y="156" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">stdio, talks to the local API</text>
+<text x="378.0" y="174" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">as a patient or caregiver</text>
+<rect x="528" y="90" width="220" height="100" rx="12" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.6"/>
+<text x="638.0" y="116" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">RenalSight API</text>
+<text x="638.0" y="138" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">same tool registry as the</text>
+<text x="638.0" y="156" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">website: role checks, blood-</text>
+<text x="638.0" y="174" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">group rules, consent, audit</text>
+<rect x="788" y="90" width="284" height="100" rx="12" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+<text x="930.0" y="116" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Result</text>
+<text x="930.0" y="138" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">polished message (EN / TA / BN / TE),</text>
+<text x="930.0" y="156" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">request + public page /r/&lt;token&gt;,</text>
+<text x="930.0" y="174" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">one-click WhatsApp link</text>
+<line x1="230" y1="140" x2="266" y2="140" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<line x1="490" y1="140" x2="526" y2="140" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<line x1="750" y1="140" x2="786" y2="140" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+<rect x="28" y="240" width="168" height="64" rx="12" fill="#e2e8f0" stroke="#334155" stroke-width="1.6"/>
+<text x="112.0" y="266" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">search_hospitals</text>
+<text x="112.0" y="288" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">AIIMS, KMCH, Kolkata...</text>
+<rect x="204" y="240" width="168" height="64" rx="12" fill="#e2e8f0" stroke="#334155" stroke-width="1.6"/>
+<text x="288.0" y="266" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">compose_request_message</text>
+<text x="288.0" y="288" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">4 languages, 3 tones</text>
+<rect x="380" y="240" width="168" height="64" rx="12" fill="#e2e8f0" stroke="#334155" stroke-width="1.6"/>
+<text x="464.0" y="266" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">whatsapp_link</text>
+<text x="464.0" y="288" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">wa.me link, you tap send</text>
+<rect x="556" y="240" width="168" height="64" rx="12" fill="#e2e8f0" stroke="#334155" stroke-width="1.6"/>
+<text x="640.0" y="266" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">create_kidney_request</text>
+<text x="640.0" y="288" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">saves + public page</text>
+<rect x="732" y="240" width="168" height="64" rx="12" fill="#e2e8f0" stroke="#334155" stroke-width="1.6"/>
+<text x="816.0" y="266" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">find_compatible_donors</text>
+<text x="816.0" y="288" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">ABO match, masked phones</text>
+<rect x="908" y="240" width="168" height="64" rx="12" fill="#e2e8f0" stroke="#334155" stroke-width="1.6"/>
+<text x="992.0" y="266" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="15" font-weight="700" fill="#0f172a">list_my_requests</text>
+<text x="992.0" y="288" text-anchor="middle" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="12.5" fill="#334155">status and offers</text>
+<text x="28" y="340" text-anchor="start" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#0f172a">Nothing is sent automatically. The assistant returns a link; the person taps send. An optional send_whatsapp_cloud tool exists but is off</text>
+<text x="28" y="362" text-anchor="start" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#0f172a">unless Cloud API credentials are configured, and it is untested without them.</text>
+</svg>

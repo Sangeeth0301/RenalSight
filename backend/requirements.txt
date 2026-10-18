@@ -1,0 +1,26 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+pydantic
+pydantic-settings
+email-validator
+bcrypt
+PyJWT
+python-multipart
+httpx
+pytest
+# ML (shared with ml/src)
+numpy
+pandas
+scipy
+scikit-learn
+xgboost
+shap
+lifelines
+statsmodels
+joblib
+matplotlib
+ucimlrepo
+apscheduler
+PyMuPDF
+reportlab

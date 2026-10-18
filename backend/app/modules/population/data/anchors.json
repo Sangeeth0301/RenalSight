@@ -1,0 +1,68 @@
+{
+  "_comment": "Published reference numbers that anchor Population Pulse. Every entry carries its source and a verification status. Edit this file when better numbers are obtained (for example from the GBD Results Tool or the IJMR paper itself).",
+  "calibration_year": 2023,
+  "india_ckd_cases_2023": {
+    "value": 138000000,
+    "source": "Global Burden of Disease 2023 (Lancet), India second-highest in the world after China (152 million); reported by The Week (PTI) 8 Nov 2025 and CSR Journal",
+    "status": "taken from news reports of the paper; verify against the Lancet GBD 2023 paper or the GBD Results Tool"
+  },
+  "seek_adult_prevalence": {
+    "value": 0.172,
+    "years": "2005-2007",
+    "source": "Singh AK et al. SEEK study, BMC Nephrology 2013;14:114. 6120 people screened at 13 centres; CKD by eGFR<60 (MDRD) or proteinuria",
+    "status": "verified from the paper abstract; screened sample, not a random population sample"
+  },
+  "prevalence_trend_pct_per_year": {
+    "value": -0.22,
+    "source": "Meshram HS, Chauhan S, Puri S. Indian Journal of Medical Research, GBD 2023 India CKD study; reported by Outlook India 2 Jul 2026: national prevalence declining about 0.22% a year, 1990-2023",
+    "status": "taken from a news report; verify against the paper. Applied to age-specific rates"
+  },
+  "state_ckd_mortality_per_lakh_2023": {
+    "IN-TN": 9.83,
+    "IN-AP": 11.64,
+    "IN-TG": 19.84,
+    "IN-KA": 13.34,
+    "_source": "Same IJMR / GBD 2023 study via The South First (Telangana highest in India; Rajasthan lowest at 6.71). West Bengal value not reported in the article.",
+    "_status": "taken from a news report; verify against the paper"
+  },
+  "census2011_population": {
+    "IND": 1210854977,
+    "IN-TN": 72147030,
+    "IN-WB": 91276115,
+    "IN-AP": 49577103,
+    "IN-TG": 35003674,
+    "IN-KA": 61095297,
+    "_source": "Census of India 2011 (Andhra Pradesh = undivided 84,580,777 minus Telangana)",
+    "_status": "entered by hand; verify against censusindia.gov.in. State shares are held constant over time, which is a simplification"
+  },
+  "region_rate_multiplier": {
+    "_note": "Relative CKD rate of each state versus India. All 1.0 because no verified state prevalence numbers are loaded yet: states differ in reality (Haryana highest, per the IJMR study). Fill from GBD state data to make regional differences data-informed.",
+    "IN-TN": 1.0, "IN-WB": 1.0, "IN-AP": 1.0, "IN-TG": 1.0, "IN-KA": 1.0
+  },
+  "regions": {
+    "IND": "India",
+    "IN-TN": "Tamil Nadu",
+    "IN-WB": "West Bengal",
+    "IN-AP": "Andhra Pradesh",
+    "IN-TG": "Telangana",
+    "IN-KA": "Karnataka"
+  },
+  "defaults": {
+    "annual_change_pct": -0.22,
+    "dialysis_fraction_of_stage5": 0.5,
+    "dialysis_sessions_per_patient_year": 156,
+    "sessions_per_station_year": 936,
+    "visits_per_nephrologist_year": 2500,
+    "_notes": {
+      "dialysis_fraction_of_stage5": "ASSUMPTION: share of people with eGFR<15 who need maintenance dialysis (others: transplant, conservative care, died). Adjustable.",
+      "dialysis_sessions_per_patient_year": "3 sessions a week x 52 weeks (standard haemodialysis schedule)",
+      "sessions_per_station_year": "ASSUMPTION: 3 shifts a day x 6 days x 52 weeks",
+      "visits_per_nephrologist_year": "ASSUMPTION: clinic workload per nephrologist; adjustable"
+    }
+  },
+  "scenario_presets": {
+    "current_trend": {"annual_change_pct": -0.22, "label": "Current trend (GBD 2023 national trend)"},
+    "faster_decline": {"annual_change_pct": -1.0, "label": "What if age-specific rates fell 1% a year (hypothetical: better diabetes and BP control)"},
+    "rising": {"annual_change_pct": 1.0, "label": "What if age-specific rates rose 1% a year (hypothetical: more diabetes and obesity)"}
+  }
+}

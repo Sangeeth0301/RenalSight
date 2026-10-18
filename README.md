@@ -70,7 +70,11 @@ One sign-in page, two different experiences. After signing in, patients and care
   </tr>
   <tr>
     <td><img src="assets/screens/forecast.jpg" alt="Time machine forecast"><br><sub><b>Time machine.</b> Fast, expected and slow paths with what-if sliders.</sub></td>
-    <td><img src="assets/screens/doctor-patient-drawer.jpg" alt="Doctor patient quick view"><br><sub><b>Touch a patient.</b> A quick view with labs, trend, forecast and one-click actions.</sub></td>
+    <td><img src="assets/screens/doctor-drawer.jpg" alt="Doctor patient quick view"><br><sub><b>Touch a patient.</b> A quick view with labs, trend, forecast and one-click actions.</sub></td>
+  </tr>
+  <tr>
+    <td><img src="assets/screens/translated-chat.jpg" alt="Chat translated into Telugu"><br><sub><b>Translate everything.</b> A doctor's English messages read in Telugu with one toggle; the original is one click away.</sub></td>
+    <td align="center"><img src="assets/screens/mobile-kidney-ta.jpg" alt="Tamil mobile view" height="420"><br><sub><b>Mobile, in Tamil.</b> The Living Kidney with tappable marks on a phone.</sub></td>
   </tr>
   <tr>
     <td><img src="assets/screens/transplant-hub.jpg" alt="Transplant hub"><br><sub><b>Transplant and donor hub.</b> Appeals, registry, hospitals, journey, dialysis log.</sub></td>

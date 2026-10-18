@@ -32,8 +32,32 @@ RenalSight turns a handful of lab values into something a person can *see and ac
 - a **forecast** of how fast kidney function may fall, as a range, never a date
 - a **care plan and draft prescription** that a doctor reviews, overrides if needed, and signs
 - a **doctor console** that ranks every patient by severity and opens any record in one click
-- a **transplant and donor hub** that writes a polished appeal and shares it in one click
+- a **transplant and donor hub** that writes a polished appeal and shares it in one click, from the website or from any AI assistant through MCP
 - **agentic helpers** that explain, draft and plan, but never act without human approval
+
+---
+
+## Sign in and two portals
+
+One sign-in page, two different experiences. After signing in, patients and caregivers land in the warm, personal **patient app**; doctors land in a bright, professional **doctor console** with a navy sidebar. Roles are enforced on the server, not just hidden in the interface.
+
+<table>
+  <tr>
+    <td colspan="2" align="center"><img src="assets/screens/login.jpg" alt="Sign-in page" width="760"><br><sub><b>Sign in.</b> Language, theme and translation controls are available before login; local demo accounts fill in with one tap.</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="assets/screens/patient-home.jpg" alt="Patient portal"><br><sub><b>Patient portal.</b> Living Kidney status, care plan, forecast, prescriptions, Buddy, direct line to the doctor, transplant hub.</sub></td>
+    <td width="50%"><img src="assets/screens/doctor-dashboard.jpg" alt="Doctor portal"><br><sub><b>Doctor portal.</b> Every patient in one ranked table; touch a patient for a quick view, open the full record, message, draft a prescription.</sub></td>
+  </tr>
+</table>
+
+| | Patient or caregiver | Doctor |
+|---|---|---|
+| **Home** | Living Kidney, care plan, notifications, ask-anything box | KPIs, stage chart, needs-attention list, sortable patient table |
+| **Records** | Own labs, forecast and what-if sliders | Any linked patient: labs table, trend, forecast, prescriptions |
+| **Messages** | Direct line to their doctor, consult rooms, community | Inbox with patient stage and urgent flags, consult rooms |
+| **Prescriptions** | Request a plan; see doses only after a doctor signs | Safety-checked editor, override with reason, sign, PDF |
+| **Extras** | Rituals, report guidance, donor appeals, dialysis log, emergency ID | Review queue, schedule, Copilot, Outreach, coordinator desk |
 
 ---
 
@@ -76,6 +100,7 @@ RenalSight turns a handful of lab values into something a person can *see and ac
 | **Connect** | Direct line (WebSocket chat with typing, read ticks, attachments), consult rooms with a six-digit code and shared checklist, community channels with reporting and auto-hide, care hub and appointments. |
 | **Translate everything** | One toggle translates chat messages, previews, AI answers and posts into the chosen language, with the original one click away. Translations are cached. |
 | **Transplant and donor hub** | Hospital directory with autocomplete, donor appeals with a public QR page, ABO compatibility and living-donor matching, a donor registry (kidney and liver while alive; heart, kidney, liver, lungs, eyes and tissue after death), coordinator verification, dialysis seat board, 10-step transplant journey, dialysis log, emergency ID with QR, FHIR export and referral-letter PDF. |
+| **MCP server** | Any MCP assistant can search hospitals, compose the appeal, create a request and return a WhatsApp link, with the same safety rules as the website. |
 | **One-click sharing** | Type a hospital, patient, blood group and phone. RenalSight writes a message in four languages and three tones and opens WhatsApp, Telegram, SMS or e-mail. An optional local bridge sends to chosen chats automatically. |
 | **AI helpers** | Nephro Buddy, Doctor Copilot, Outreach assistant and Population Analyst share one tool registry. A multi-provider router falls back across Groq, Gemini, OpenAI, Grok and Ollama, and finally to rule-based answers. |
 | **Population Pulse** | CKD cases by region and year from UN age-sex projections and the NHANES pattern, calibrated to a published national anchor, with stages, care needs, scenarios and a capacity gap. |
@@ -169,6 +194,37 @@ OPENAI_API_KEY=
 XAI_API_KEY=
 OLLAMA_ENABLED=true
 ```
+
+---
+
+## MCP server: let an AI assistant do the appeal
+
+RenalSight ships a **Model Context Protocol (MCP)** server, so any MCP-compatible assistant can search hospitals, write the donor appeal in four languages, create a request and hand back a one-click WhatsApp link, using the same rules as the website.
+
+<img src="assets/mcp.svg" alt="MCP flow" width="100%">
+
+| Tool | What it does |
+|---|---|
+| `search_hospitals` | find AIIMS, KMCH, a Kolkata hospital... (directory names, unverified unless marked) |
+| `compose_request_message` | polished appeal in English, Tamil, Bengali or Telugu; warm, formal or urgent |
+| `whatsapp_link` | a `wa.me` link; the person taps send |
+| `create_kidney_request` | saves the request and returns its public page `/r/<token>` |
+| `find_compatible_donors` | ABO-compatible living-donor pledges with masked phones |
+| `list_my_requests` | the account's requests and offers |
+
+```json
+{
+  "mcpServers": {
+    "renalsight": {
+      "command": "python",
+      "args": ["mcp_server/server.py"],
+      "env": { "RENALSIGHT_EMAIL": "asha@example.com", "RENALSIGHT_PASSWORD": "Demo@12345" }
+    }
+  }
+}
+```
+
+Then ask the assistant: *"Ask KMCH Coimbatore for a kidney donor for Ravi Kumar, blood group B+, contact 98765 43210, in Tamil."* Nothing is sent automatically. Full setup in [`mcp_server/README.md`](mcp_server/README.md).
 
 ---
 

@@ -4,9 +4,9 @@
  * No hosted back end: every request goes to our own server.
  */
 
-// In a GitHub Codespace the page is served from https://<name>-5173.app.github.dev, so the API is reached through the Vite proxy at /api (same origin).
-const inCodespace = typeof location !== "undefined" && /\.app\.github\.dev$/.test(location.hostname);
-export const API_URL: string = (import.meta as any).env?.VITE_API_URL ?? (inCodespace ? `${location.origin}/api` : "http://localhost:8000");
+// On localhost the API is on port 8000. Anywhere else (a Codespace, a tunnel, a hosted copy) the page and the API share one origin and the API lives under /api.
+const onLocalhost = typeof location === "undefined" || ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
+export const API_URL: string = (import.meta as any).env?.VITE_API_URL ?? (onLocalhost ? "http://localhost:8000" : `${location.origin}/api`);
 export const WS_URL: string = API_URL.replace(/^http/, "ws");
 
 export type Lang = "en" | "ta" | "bn" | "te";

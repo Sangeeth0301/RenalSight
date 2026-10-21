@@ -1,0 +1,22 @@
+# One-click hosting on Render: New > Blueprint > pick this repository.
+services:
+  - type: web
+    name: renalsight
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: LLM_CHAIN
+        value: groq,gemini,openai,xai,ollama,rules
+      - key: OLLAMA_ENABLED
+        value: "false"
+      - key: BUDDY_MESSAGES_PER_MINUTE
+        value: "20"
+      - key: SEED_COHORT
+        value: "1"
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false

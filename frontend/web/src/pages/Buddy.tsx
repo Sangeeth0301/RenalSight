@@ -1,4 +1,5 @@
 import { Tx } from "@/lib/translate";
+import { Rich } from "@/components/Rich";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Bot, Mic, MicOff, Send, Trash2, Volume2 } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
@@ -12,20 +13,6 @@ import { cn, tx, uid } from "@/lib/utils";
 interface Msg { id: string; role: "user" | "assistant"; content: string; provider?: string | null; tools?: BuddyReply["tools_used"]; doseRemoved?: boolean }
 
 /** very small markdown: **bold** and "- " bullets, rendered as React nodes (never innerHTML). */
-function Rich({ text }: { text: string }) {
-  const lines = text.split("\n");
-  const out: ReactNode[] = [];
-  let bullets: string[] = [];
-  const flush = () => { if (bullets.length) { out.push(<ul key={`u${out.length}`} className="my-1 list-disc space-y-0.5 pl-5">{bullets.map((b, i) => <li key={i}>{inline(b)}</li>)}</ul>); bullets = []; } };
-  const inline = (s: string): ReactNode[] => s.split(/(\*\*[^*]+\*\*)/g).map((p, i) => (p.startsWith("**") && p.endsWith("**") ? <strong key={i}>{p.slice(2, -2)}</strong> : <span key={i}>{p}</span>));
-  lines.forEach((l, i) => {
-    if (/^\s*[-*•]\s+/.test(l)) bullets.push(l.replace(/^\s*[-*•]\s+/, ""));
-    else { flush(); out.push(l.trim() ? <p key={i} className="my-1">{inline(l)}</p> : <div key={i} className="h-1" />); }
-  });
-  flush();
-  return <>{out}</>;
-}
-
 const SR: any = typeof window !== "undefined" ? (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition : null;
 
 export default function Buddy() {

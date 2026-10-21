@@ -10,7 +10,7 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Python-009688?logo=fastapi&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-local-003b57?logo=sqlite&logoColor=white)
-![Tests](https://img.shields.io/badge/tests-58%20backend%20%C2%B7%2030%20browser-16a34a)
+![Tests](https://img.shields.io/badge/tests-66%20backend%20%C2%B7%2030%20browser-16a34a)
 ![Languages](https://img.shields.io/badge/languages-EN%20%C2%B7%20TA%20%C2%B7%20BN%20%C2%B7%20TE-f59e0b)
 ![Status](https://img.shields.io/badge/runs-on%20localhost%20%C2%B7%20Codespaces-64748b)
 [![CI](https://github.com/Sangeeth0301/RenalSight/actions/workflows/ci.yml/badge.svg)](https://github.com/Sangeeth0301/RenalSight/actions/workflows/ci.yml)
@@ -70,7 +70,7 @@ One sign-in page, two different experiences. After signing in, patients and care
     <td width="50%"><img src="assets/screens/doctor-dashboard.jpg" alt="Doctor dashboard"><br><sub><b>Doctor dashboard.</b> KPIs, stage distribution, needs-attention list and a sortable patient table.</sub></td>
   </tr>
   <tr>
-    <td><img src="assets/screens/forecast.jpg" alt="Time machine forecast"><br><sub><b>Time machine.</b> Fast, expected and slow paths with what-if sliders.</sub></td>
+    <td><img src="assets/screens/forecast.jpg" alt="Time machine: kidney journey"><br><sub><b>Time machine.</b> When each milestone may come (year and age), care levers, and where people like you end up.</sub></td>
     <td><img src="assets/screens/doctor-drawer.jpg" alt="Doctor patient quick view"><br><sub><b>Touch a patient.</b> A quick view with labs, trend, forecast and one-click actions.</sub></td>
   </tr>
   <tr>
@@ -98,7 +98,8 @@ One sign-in page, two different experiences. After signing in, patients and care
 | Area | What it does |
 |---|---|
 | **Living Kidney** | SVG kidney with five stages from healthy to destroyed. Wounds map to real labs: cracks for eGFR, leaking drops for urine protein, swollen veins for blood pressure, pallor for anaemia, flicker for potassium. Tap a mark to learn why it is there. The whole app shifts teal, amber or rose with severity. |
-| **Clinical engine** | CKD-EPI 2021 eGFR, KDIGO G and A staging, a CKD detector (XGBoost with SHAP reasons), KFRE dialysis-risk, progression forecast with fast, expected and slow ranges, what-if sliders, group survival outlook from NHANES. |
+| **Clinical engine** | CKD-EPI 2021 eGFR, KDIGO G and A staging, a CKD detector (XGBoost with SHAP reasons), KFRE dialysis-risk, and the **Kidney Journey** forecast (below). |
+| **Kidney Journey (Time machine)** | Simulates 2,500 possible futures from the patient's latest eGFR, their own lab trend and their risk factors. Shows eGFR bands by calendar year, **milestones with the year and age** (stage 3a, 3b, 4, transplant evaluation window at eGFR 20, kidney failure at 15, dialysis likely at 10) as fast, median and slow cases, a year slider that ages the Living Kidney and explains what each stage is usually like, a **care-levers what-if** (blood pressure, blood sugar, ACE/ARB, SGLT2 inhibitor), **where people like you end up** (kidney working, kidney failure range, died; group shares from the NHANES Cox model with death as a competing event), group survival at 1, 3, 5 and 10 years, and a "when to start planning" list. It never predicts when one person will die. |
 | **Lab reports** | Manual entry, history chart, paste or upload TXT, CSV or text PDF (units converted, you confirm before saving), photo OCR when Tesseract is installed, and one-click **real sample records** for each kidney-function band. |
 | **Rx Studio** | Care plan, draft medicines from KDIGO-style rules, a deterministic safety engine (renal doses, interactions, NSAIDs, potassium), doctor review, written override (audit-logged), e-signature and PDF. Patients never see unsigned doses. |
 | **Doctor console** | Bright, clinical theme. Patient table with stage, eGFR, trend sparkline, change per year and severity. Click a patient for a quick-view drawer, then a full record with labs, prescriptions and live chat. Review queue and schedule. |
@@ -144,7 +145,7 @@ The browser talks to a FastAPI backend over REST and WebSocket. Every capability
 | ML | scikit-learn, XGBoost, SHAP, lifelines (Cox), statsmodels, pandas, NumPy |
 | AI | OpenAI-compatible HTTP router for Groq, Gemini, OpenAI, Grok and Ollama, with rule-based fallback |
 | Integration | MCP server, local WhatsApp bridge (Playwright over Chrome DevTools), FHIR export with LOINC codes |
-| Quality | pytest (58 tests), Playwright (30 browser tests against a real backend), i18n parity checker |
+| Quality | pytest (66 tests), Playwright (30 browser tests against a real backend), i18n parity checker |
 
 ---
 
@@ -283,9 +284,9 @@ On a hosted copy the local WhatsApp bridge is switched off (`WHATSAPP_ENABLED=0`
 
 | Suite | Count | Covers |
 |---|---|---|
-| Backend (pytest) | 58 | auth, labs, clinical, Rx safety, chat, population, transplant, translation, WhatsApp allowlist, MCP |
+| Backend (pytest) | 66 | auth, labs, clinical, Rx safety, chat, population, transplant, translation, WhatsApp allowlist, MCP |
 | Browser (Playwright) | 30 | real Chromium against the real backend: login, labs, Living Kidney, forecast, Rx with override and PDF, live chat, rooms, community, hub, doctor console, helpers, offline service worker |
-| Language check | 749 keys | key, placeholder and care-plan-code parity across all four languages |
+| Language check | 854 keys | key, placeholder and care-plan-code parity across all four languages |
 
 ---
 

@@ -150,6 +150,8 @@ The browser talks to a FastAPI backend over REST and WebSocket. Every capability
 
 ## Quick start
 
+> Setting this up on another machine, or handing it to someone (or their AI assistant)? Follow the step-by-step guide in [`SETUP.md`](SETUP.md): clone, backend, website, demo logins, optional AI keys and WhatsApp.
+
 **Windows, one step:** double-click `Start RenalSight.bat` (or run `.\run-dev.ps1`). It installs what is missing, starts the backend and the website, creates demo accounts and opens http://127.0.0.1:5173.
 
 **Manual:**

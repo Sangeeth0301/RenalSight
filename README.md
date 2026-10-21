@@ -261,6 +261,18 @@ Safeguards: only chats on an allowlist (`WHATSAPP_ALLOWED`) are ever messaged, m
 
 ---
 
+## Host it for other people (one service, one link)
+
+`backend/app/deploy.py` serves the API under `/api` and the built website from `/`, so the whole app is one service. A `Dockerfile` and a Render blueprint are included.
+
+1. In Render choose **New → Blueprint** and pick this repository (`render.yaml` does the rest).
+2. Add `GROQ_API_KEY` and `GEMINI_API_KEY` in the service's environment (optional; the app works without AI).
+3. Open the service URL and share it. Demo accounts are created on first start (`asha@example.com`, `dr.rao@example.com`, password `Demo@12345`) along with 320 demo patients.
+
+On a hosted copy the local WhatsApp bridge is switched off (`WHATSAPP_ENABLED=0`), the free plan sleeps when idle, and its SQLite file is reset on restart. Anyone with the link can register, so treat it as a demo and do not enter real health data.
+
+---
+
 ## Testing
 
 ```powershell

@@ -39,17 +39,20 @@ test("patient adds a lab: eGFR, stage, Living Kidney, forecast, care plan and ri
   await expect(page.getByText(/Take medicines|Controlling blood pressure|Eat less salt/).first()).toBeVisible();
   await page.keyboard.press("Escape");
 
-  // ---- time machine: chart, slider ages the kidney, what-if, group outlook, no date of death
+  // ---- time machine: journey headline, chart, milestones, slider ages the kidney, care levers, group outcomes and survival, no date of death
   await page.goto("/forecast");
+  await expect(page.getByTestId("journey-headline")).toContainText("kidney failure");
   await expect(page.getByTestId("forecast-chart")).toBeVisible();
-  await expect(page.getByTestId("case-expected")).toBeVisible();
+  await expect(page.getByTestId("milestones")).toContainText("Kidney failure (stage 5)");
+  await expect(page.getByTestId("milestones")).toContainText("Transplant evaluation window");
   await page.getByTestId("year-slider").fill("12");
   await expect(page.getByTestId("year-label")).toHaveText("12");
-  await page.getByTestId("wi-sbp").fill("120");
-  await page.getByTestId("wi-hba1c").fill("6.8");
-  await page.getByTestId("wi-apply").click();
-  await expect(page.getByTestId("wi-result")).toBeVisible();
-  await expect(page.getByTestId("outlook")).toContainText("These are group averages");
+  await expect(page.getByTestId("stage-guide")).toBeVisible();
+  await page.getByTestId("lever-sglt2").uncheck();
+  await expect(page.getByTestId("lever-sglt2")).not.toBeChecked();
+  await expect(page.getByTestId("outcomes")).toContainText("group picture");
+  await expect(page.getByTestId("survival")).toContainText("Out of 100 people like you");
+  await expect(page.getByTestId("plan")).toContainText("Transplant evaluation");
   await expect(page.locator("body")).not.toContainText(/date of death/i);
 
   // ---- care lab: goal cards, tick progress

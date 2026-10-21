@@ -117,6 +117,19 @@ export interface Lab { id: number; taken_on: string; scr: number | null; acr: nu
 export type LabInput = Partial<Pick<Lab, "scr" | "acr" | "sbp" | "dbp" | "hba1c" | "hgb" | "potassium" | "bun">> & { taken_on?: string };
 export interface Wound { code: "cracks" | "leak" | "veins" | "pallor" | "flicker"; level: number; cause: "low_egfr" | "albuminuria" | "high_bp" | "anaemia" | "high_potassium"; value: number | null }
 export interface KidneyState { has_data: boolean; message?: string; g_stage: string; a_category: string | null; visual_stage: 1 | 2 | 3 | 4 | 5; stage_name: "healthy" | "stressed" | "scarred" | "wounded" | "destroyed"; severity: number; theme: "healthy" | "watch" | "critical"; shrink: number; pulse: "calm" | "slow" | "irregular" | "flatline"; wounds: Wound[]; urgent: boolean; as_of?: string; egfr?: number }
+export interface JourneyMilestone { key: string; label: string; egfr: number; already: boolean; fast: number | null; median: number | null; slow: number | null; fast_year: number | null; median_year: number | null; slow_year: number | null; fast_age: number | null; median_age: number | null; slow_age: number | null; p_by: Record<string, number>; chance_within_horizon: number }
+export interface JourneyRun {
+  bands: { years: number[]; p10: number[]; p50: number[]; p90: number[] }; milestones: JourneyMilestone[]; slope: { mean: number; sd: number }; kf: { p_by: Record<string, number> };
+  outcomes: { years: number[]; ok: number[]; kidney_failure: number[]; died_before_kf: number[]; died_after_kf: number[] } | null;
+  survival: { years: number[]; alive_pct: number[]; p10: number[]; p90: number[]; at: Record<string, number>; group_median_years: number | null } | null;
+}
+export interface StageGuide { title: string; happens: string[]; do: string[] }
+export interface Journey {
+  has_data?: boolean; message?: string; today: string; age: number; egfr_now: number; stage_now: string; horizon: number; current: JourneyRun; with_levers: JourneyRun; levers_used: string[];
+  levers_info: Record<string, { label: string; how: string; needs: string }>; timeline: { year: number; age: number; t: number; egfr_current: number; egfr_levers: number; stage_current: string; stage_levers: string }[];
+  stage_guide: Record<string, StageGuide>; assumptions: string[]; labs_used: number; own_trend_per_year: number | null; uses_own_trend: boolean;
+  inputs: { sbp: number | null; hba1c: number | null; acr: number | null; hgb: number | null; diabetes: boolean }; note: string;
+}
 export interface Forecast {
   has_data?: boolean; message?: string; current_egfr: number; slope_mean: number; slope_sd: number; years: number[]; egfr_p10: number[]; egfr_p50: number[]; egfr_p90: number[];
   years_to_stage5_p10: number | null; years_to_stage5_p50: number | null; years_to_stage5_p90: number | null; prob_kf_2y: number; prob_kf_5y: number; prob_kf_10y: number;
@@ -193,6 +206,7 @@ export const api = {
 
   // clinical
   myKidney: () => get<KidneyState>("/clinical/me/kidney-state"),
+  myJourney: (levers: string[] = [], horizon_years = 15) => get<Journey>("/clinical/me/journey", { levers: levers.join(","), horizon_years }),
   myForecast: (scenario: "no_change" | "good_care" = "no_change", horizon_years = 15) => get<Forecast>("/clinical/me/forecast", { scenario, horizon_years }),
   kidneyState: (b: { egfr?: number; scr?: number; age?: number; sex?: Sex; acr?: number; sbp?: number; hgb?: number; potassium?: number }) => post<KidneyState>("/clinical/kidney-state", b),
   egfr: (b: { scr: number; age: number; sex: Sex }) => post<{ egfr: number; g_stage: string }>("/clinical/egfr", b),

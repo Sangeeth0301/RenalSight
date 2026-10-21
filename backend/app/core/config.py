@@ -18,6 +18,7 @@ class Settings(BaseSettings):
     access_token_minutes: int = 60 * 12
     cors_origins: str = ("http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173,"
                          "http://localhost:8080,http://127.0.0.1:8080,http://localhost:3000,http://127.0.0.1:3000")
+    cors_origin_regex: str = r"https://.*\.app\.github\.dev"      # GitHub Codespaces forwarded ports
     ml_dir: str = str(ROOT / "ml")
 
     # ---- AI Buddy providers (all optional; keys live only here, never in the front end)

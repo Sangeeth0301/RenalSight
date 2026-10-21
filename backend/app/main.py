@@ -74,7 +74,7 @@ def start_scheduler():
 settings = get_settings()
 app = FastAPI(title=settings.app_name, version="0.1.0", lifespan=lifespan,
               description="RenalSight backend: auth, labs, clinical ML tools. Local-only. Decision support, not a medical device.")
-app.add_middleware(CORSMiddleware, allow_origins=[o.strip() for o in settings.cors_origins.split(",")],
+app.add_middleware(CORSMiddleware, allow_origins=[o.strip() for o in settings.cors_origins.split(",")], allow_origin_regex=settings.cors_origin_regex,
                    allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
 

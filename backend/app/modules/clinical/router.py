@@ -61,3 +61,9 @@ def my_state(ctx: Ctx = Depends(_ctx)):
 @router.get("/me/forecast")
 def my_forecast(scenario: str = "no_change", horizon_years: float = 15, ctx: Ctx = Depends(_ctx)):
     return run_tool("my_forecast", ctx, {"scenario": scenario, "horizon_years": horizon_years})
+
+
+@router.get("/me/journey")
+def my_journey(levers: str = "", horizon_years: float = 15, ctx: Ctx = Depends(_ctx)):
+    """Kidney Journey. levers: comma list of bp_control, sugar_control, protein_drug, sglt2 (empty = all that apply)."""
+    return run_tool("my_journey", ctx, {"levers": [x for x in levers.split(",") if x], "horizon_years": horizon_years})

@@ -14,6 +14,7 @@ from ...tools import Ctx, tool
 from clinical import albuminuria_category, egfr_ckdepi_2021, gfr_stage, kfre_4var  # noqa: E402
 from kidney_state import kidney_state as _kidney_state  # noqa: E402
 import progression as pg  # noqa: E402
+import trajectory as tj  # noqa: E402
 
 DISCLAIMER = "Decision-support estimate for learning and demonstration. It is not a diagnosis; please consult a doctor."
 SIM_NOTE = ("Forecasts are simulation-based: they use published decline-rate ranges and a prior calibrated to the KFRE equation, "
@@ -296,3 +297,38 @@ def my_kidney_state(ctx: Ctx, a: Empty):
 @tool("my_forecast", "Forecast the signed-in user's kidney function using their own lab history.", MyForecastIn, roles=("patient", "caregiver"), module="clinical")
 def my_forecast(ctx: Ctx, a: MyForecastIn):
     return forecast_for(ctx.db, ctx.user, a.scenario, a.horizon_years)
+
+
+# ------------------------------------------------------------------ Kidney Journey (full trajectory)
+class JourneyIn(BaseModel):
+    levers: list[Literal["bp_control", "sugar_control", "protein_drug", "sglt2"]] = Field(default_factory=list, description="care changes to compare against today's care; empty means all that apply")
+    horizon_years: float = Field(default=15, ge=5, le=20)
+
+
+def journey_for(db, user, levers: list[str] | None = None, horizon_years: float = 15) -> dict:
+    """Year-by-year journey for a patient user: milestones with years and ages, group outcomes, group survival, levers what-if."""
+    need_profile(user)
+    labs = [r for r in labs_service.list_labs(db, user.id) if r.egfr is not None]
+    if not labs:
+        return {"has_data": False, "message": "No lab with creatinine yet. Add a lab report to see your journey."}
+    snap = labs_service.snapshot(db, user)
+    first = labs[0].taken_on
+    ht = [max((r.taken_on - first).days / 365.25, 0.0) for r in labs]
+    he = [r.egfr for r in labs]
+    p = dict(age=float(user.age()), male=user.sex == "male", diabetes=bool(user.diabetes), sbp=snap["sbp"], hba1c=snap["hba1c"], acr=snap["acr"],
+             egfr0=float(labs[-1].egfr), hgb=snap["hgb"], history_t=ht if len(ht) >= 3 else None, history_egfr=he if len(he) >= 3 else None)
+    j = tj.build_journey(p, levers=levers, horizon=horizon_years, cox=ml_loader.survival_model())
+    own = None
+    if len(ht) >= 3 and (ht[-1] - ht[0]) >= 0.4:
+        b, _ = pg.individual_slope(ht, he)
+        own = None if b is None else round(float(b), 1)
+    j.update({"has_data": True, "labs_used": len(labs), "own_trend_per_year": own, "uses_own_trend": len(ht) >= 3,
+              "inputs": {"sbp": snap["sbp"], "hba1c": snap["hba1c"], "acr": snap["acr"], "hgb": snap["hgb"], "diabetes": bool(user.diabetes)},
+              "note": SIM_NOTE + " " + DISCLAIMER})
+    return j
+
+
+@tool("my_journey", "Full kidney journey for the signed-in user: when each stage and kidney-failure milestone is likely (years, ages), where people like them end up, group survival, and a care-levers what-if. Never a date of death.",
+      JourneyIn, roles=("patient", "caregiver"), module="clinical")
+def my_journey(ctx: Ctx, a: JourneyIn):
+    return journey_for(ctx.db, ctx.user, list(a.levers), a.horizon_years)

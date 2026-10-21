@@ -12,7 +12,8 @@
 ![SQLite](https://img.shields.io/badge/SQLite-local-003b57?logo=sqlite&logoColor=white)
 ![Tests](https://img.shields.io/badge/tests-58%20backend%20%C2%B7%2030%20browser-16a34a)
 ![Languages](https://img.shields.io/badge/languages-EN%20%C2%B7%20TA%20%C2%B7%20BN%20%C2%B7%20TE-f59e0b)
-![Status](https://img.shields.io/badge/runs-on%20localhost-64748b)
+![Status](https://img.shields.io/badge/runs-on%20localhost%20%C2%B7%20Codespaces-64748b)
+[![CI](https://github.com/Sangeeth0301/RenalSight/actions/workflows/ci.yml/badge.svg)](https://github.com/Sangeeth0301/RenalSight/actions/workflows/ci.yml)
 
 <img src="assets/screens/living-kidney.jpg" alt="The Living Kidney: a kidney that visibly wounds as kidney function falls" width="880">
 
@@ -245,6 +246,18 @@ Safeguards: only chats on an allowlist (`WHATSAPP_ALLOWED`) are ever messaged, m
 ## MCP server
 
 `mcp_server/` lets any MCP client search hospitals, compose the appeal, create a request and get a WhatsApp link. See [`mcp_server/README.md`](mcp_server/README.md).
+
+---
+
+## Run it on GitHub (Codespaces) and automatic testing
+
+**One-click cloud copy.** Open the repository on GitHub, choose **Code → Codespaces → Create codespace on main**. The dev container installs everything, starts the FastAPI backend and the website, seeds the demo accounts and forwards port **5173**. Open that port and sign in as `asha@example.com` or `dr.rao@example.com` (password `Demo@12345`). Inside a Codespace the website reaches the API through its own `/api` proxy, so nothing else needs to be opened or made public.
+
+- AI keys are optional: add `GROQ_API_KEY` and `GEMINI_API_KEY` as **Codespaces secrets** and they are picked up automatically.
+- More demo data: `cd backend && python seed_cohort.py`.
+- The local WhatsApp bridge needs a desktop Chrome and your phone, so it is for local use only.
+
+**CI on every push.** The workflow in `.github/workflows/ci.yml` runs the backend tests, the language-file check, the TypeScript check and production build, and the full browser suite (real Chromium against a real backend) on GitHub's runners. The badge above shows its status.
 
 ---
 

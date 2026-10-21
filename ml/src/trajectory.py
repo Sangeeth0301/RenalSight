@@ -19,7 +19,7 @@ import math
 import numpy as np
 import pandas as pd
 
-from progression import GOOD_CARE_REDUCTION, SLOPE_SD, VISIT_NOISE_SD, posterior_slope, prior_slope
+from progression import GOOD_CARE_REDUCTION, SLOPE_SD, VISIT_NOISE_SD, level_estimate, level_uncertainty, posterior_slope, prior_slope
 
 STEP = 0.25                      # years between simulated points
 MAX_SURV_YEARS = 10.0            # the survival model is fitted on <= ~14 years of follow-up; stay well inside it
@@ -110,7 +110,10 @@ def _simulate(p: dict, levers: list[str], horizon: float, seed: int, today: dt.d
     mu, sd = _slope_dist(p, levers)
     slopes = rng.normal(mu, sd, size=n)
     t = np.arange(0, horizon + 1e-9, STEP)
-    paths = p["egfr0"] + np.outer(slopes, t) + _brownian(rng, n, t)
+    level_sd = level_uncertainty(p.get("history_t"), p.get("history_egfr"))
+    centre = level_estimate(p["history_t"], p["history_egfr"]) if p.get("history_t") is not None and len(p["history_t"]) >= 3 else p["egfr0"]
+    start = centre + rng.normal(0.0, level_sd, size=n)                          # today's true eGFR is uncertain (one noisy lab)
+    paths = start[:, None] + np.outer(slopes, t) + _brownian(rng, n, t)
     meas = np.maximum(paths + rng.normal(0, VISIT_NOISE_SD, size=paths.shape), 2.0)            # what a future lab would show
     true_ = np.maximum(paths, 2.0)
 

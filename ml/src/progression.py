@@ -68,6 +68,34 @@ def individual_slope(t_years, egfr):
     return b, math.sqrt(s2 / sxx)
 
 
+def level_uncertainty(t_years=None, egfr=None):
+    """SD of today's true eGFR: the regression standard error at the last visit when there are 3+ results, otherwise one noisy measurement."""
+    if t_years is None or len(t_years) < 3:
+        return VISIT_NOISE_SD
+    t, y = np.asarray(t_years, float), np.asarray(egfr, float)
+    n = len(t)
+    sxx = float(((t - t.mean()) ** 2).sum())
+    if sxx <= 0 or (t.max() - t.min()) < 0.4:
+        return VISIT_NOISE_SD
+    b = float(((t - t.mean()) * (y - y.mean())).sum() / sxx)
+    resid = y - (y.mean() + b * (t - t.mean()))
+    s2 = max(float((resid ** 2).sum() / max(n - 2, 1)), VISIT_NOISE_SD ** 2 * 0.5)
+    return math.sqrt(s2 / n + (t[-1] - t.mean()) ** 2 * s2 / sxx)
+
+
+def level_estimate(t_years, egfr):
+    """Best estimate of today's true eGFR: the fitted value at the last visit when there are 3+ results (noise averaged out), otherwise the last lab."""
+    egfr = list(egfr)
+    if t_years is None or len(t_years) < 3:
+        return float(egfr[-1])
+    t, y = np.asarray(t_years, float), np.asarray(egfr, float)
+    sxx = float(((t - t.mean()) ** 2).sum())
+    if sxx <= 0 or (t.max() - t.min()) < 0.4:
+        return float(y[-1])
+    b = float(((t - t.mean()) * (y - y.mean())).sum() / sxx)
+    return float(y.mean() + b * (t[-1] - t.mean()))
+
+
 def posterior_slope(prior_mu, t_years, egfr):
     """Precision-weighted blend of covariate prior and the patient's own trend. Returns (mean, sd)."""
     b, se = individual_slope(t_years, egfr)
@@ -101,13 +129,18 @@ class Forecast:
         return self.__dict__.copy()
 
 
-def forecast(current_egfr, slope_mean, slope_sd, horizon=15.0, n=4000, seed=7, step=0.5):
-    """Monte-Carlo forecast of eGFR over `horizon` years and time to eGFR < 15."""
+def forecast(current_egfr, slope_mean, slope_sd, horizon=15.0, n=4000, seed=7, step=0.5, level_sd=0.0):
+    """Monte-Carlo forecast of eGFR over `horizon` years and time to eGFR < 15.
+
+    level_sd: uncertainty of today's true eGFR. One lab value carries measurement noise (about VISIT_NOISE_SD), so anchoring every path on it
+    exactly makes the band too narrow; each path starts from current_egfr + N(0, level_sd).
+    """
     rng = np.random.default_rng(seed)
     slopes = rng.normal(slope_mean, slope_sd, size=n)
+    start = current_egfr + rng.normal(0.0, level_sd, size=n) if level_sd > 0 else np.full(n, float(current_egfr))
     yrs = np.arange(0, horizon + 1e-9, step)
     # trajectories with growing process uncertainty
-    paths = current_egfr + np.outer(slopes, yrs) + _brownian(rng, n, yrs)
+    paths = start[:, None] + np.outer(slopes, yrs) + _brownian(rng, n, yrs)
     paths = np.maximum(paths + rng.normal(0, VISIT_NOISE_SD, size=paths.shape), 2.0)   # band = future *measured* eGFR
     fc = Forecast(current_egfr=float(current_egfr), slope_mean=float(slope_mean), slope_sd=float(slope_sd))
     fc.years = [round(float(y), 2) for y in yrs]
@@ -122,7 +155,7 @@ def forecast(current_egfr, slope_mean, slope_sd, horizon=15.0, n=4000, seed=7, s
         return fc
     # first crossing time using a longer, finer straight-line + noise simulation
     ty = np.arange(0, HORIZON_YEARS + 1e-9, 0.25)
-    full = current_egfr + np.outer(slopes, ty) + _brownian(rng, n, ty)
+    full = start[:, None] + np.outer(slopes, ty) + _brownian(rng, n, ty)
     below = full < KF_EGFR
     crossed = below.any(axis=1)
     first = np.where(crossed, ty[below.argmax(axis=1)], np.inf)
@@ -162,7 +195,9 @@ def forecast_patient(age, male, diabetes, sbp, hba1c, acr, current_egfr, history
         baseline = -0.8                                       # unavoidable ageing component
         excess = min(mu - baseline, 0.0)                      # extra decline beyond ageing (negative)
         mu = mu - excess * GOOD_CARE_REDUCTION                # remove 35% of the excess
-    return forecast(current_egfr, mu, sd, horizon=horizon)
+    if history_t is not None and len(history_t) >= 3:
+        current_egfr = level_estimate(history_t, history_egfr)
+    return forecast(current_egfr, mu, sd, horizon=horizon, level_sd=level_uncertainty(history_t, history_egfr))
 
 
 def whatif(base: dict, changes: dict, horizon=15.0):

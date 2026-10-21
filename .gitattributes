@@ -2,3 +2,6 @@
 *.mjs text eol=lf
 *.yml text eol=lf
 *.json text eol=lf
+*.pdf binary
+*.png binary
+*.jpg binary

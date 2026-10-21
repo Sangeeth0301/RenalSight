@@ -10,6 +10,7 @@ from datetime import date
 
 LIMITS = {"scr": (0.2, 30), "bun": (1, 250), "potassium": (1.5, 9), "hgb": (3, 22), "hba1c": (3, 20), "acr": (0, 20000), "sbp": (60, 260), "dbp": (30, 160)}
 NUM = r"(\d{1,5}(?:[.,]\d{1,3})?)"
+MONTHS = {m: i for i, m in enumerate(["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"], 1)}
 
 
 def _f(s: str) -> float:
@@ -28,7 +29,24 @@ def text_from_pdf(data: bytes) -> str:
     import fitz  # PyMuPDF
 
     with fitz.open(stream=data, filetype="pdf") as doc:
-        return "\n".join(page.get_text() for page in doc)[:60000]
+        return "\n".join(_rows(page) for page in doc)[:60000]
+
+
+def _rows(page) -> str:
+    """Rebuild table rows: PDF text extraction can put every cell on its own line, so words are regrouped by their
+    vertical position ("Serum Creatinine 2.2 mg/dL 0.6 - 1.1 HIGH") before the patterns run."""
+    words = page.get_text("words")                        # x0, y0, x1, y1, text, block, line, word
+    if not words:
+        return ""
+    words.sort(key=lambda w: ((w[1] + w[3]) / 2, w[0]))
+    lines: list[list] = []
+    for w in words:
+        mid = (w[1] + w[3]) / 2
+        if lines and abs(lines[-1][0] - mid) <= 3.5:
+            lines[-1][1].append(w)
+        else:
+            lines.append([mid, [w]])
+    return "\n".join(" ".join(x[4] for x in sorted(ws, key=lambda x: x[0])) for _, ws in lines)
 
 
 def text_from_image(data: bytes) -> str:
@@ -55,7 +73,7 @@ def parse_text(text: str) -> dict:
             found[field] = {"value": round(value, 2), "raw": raw.strip()[:80], "unit": unit, "note": note}
 
     # creatinine (mg/dL or umol/L)
-    m = _first(r"(?:serum\s+)?creatinine(?!\s*clearance)[^0-9\n]{0,30}" + NUM + r"\s*(mg\s*/\s*dl|umol\s*/\s*l|micromol\s*/\s*l|µmol/l)?", t)
+    m = _first(r"(?<!albumin/)(?<!albumin )(?<!urine )(?:serum\s+)?creatinine(?!\s*clearance)(?!\s*ratio)[^0-9\n]{0,30}" + NUM + r"\s*(mg\s*/\s*dl|umol\s*/\s*l|micromol\s*/\s*l|µmol/l)?", t)
     if m:
         v, unit = _f(m.group(1)), (m.group(2) or "").lower().replace(" ", "")
         if unit.startswith(("umol", "micromol")) or (not unit and v > 20):
@@ -102,9 +120,29 @@ def parse_text(text: str) -> dict:
     if m:
         put("sbp", float(m.group(1)), m.group(0), "mmHg")
         put("dbp", float(m.group(2)), m.group(0), "mmHg")
+    else:                                                  # separate rows: "Blood Pressure (systolic) 154 mmHg" / "(diastolic) 88 mmHg"
+        for field, word in (("sbp", "systolic"), ("dbp", "diastolic")):
+            m = _first(word + r"\)?[^0-9\n]{0,15}" + NUM, t)
+            if m:
+                put(field, _f(m.group(1)), m.group(0), "mmHg")
     # date
     taken = None
-    for pat, order in ((r"(\d{4})-(\d{2})-(\d{2})", "ymd"), (r"(\d{1,2})[/-](\d{1,2})[/-](\d{4})", "dmy")):
+    mm = re.search(r"(\d{1,2})[ \-/]([A-Za-z]{3,9})[ \-/,]*(\d{4})", t) or None
+    if mm and mm.group(2)[:3].lower() in MONTHS:
+        try:
+            taken = date(int(mm.group(3)), MONTHS[mm.group(2)[:3].lower()], int(mm.group(1)))
+        except ValueError:
+            taken = None
+    if taken is None:
+        mm = re.search(r"([A-Za-z]{3,9})\.?\s+(\d{1,2}),?\s+(\d{4})", t)
+        if mm and mm.group(1)[:3].lower() in MONTHS:
+            try:
+                taken = date(int(mm.group(3)), MONTHS[mm.group(1)[:3].lower()], int(mm.group(2)))
+            except ValueError:
+                taken = None
+    if taken is not None and taken > date.today():
+        taken = None
+    for pat, order in (() if taken else ((r"(\d{4})-(\d{2})-(\d{2})", "ymd"), (r"(\d{1,2})[/-](\d{1,2})[/-](\d{4})", "dmy"))):
         d = re.search(pat, t)
         if d:
             try:

@@ -28,7 +28,12 @@ _sends: dict[int, deque] = defaultdict(deque)
 _login_proc: subprocess.Popen | None = None
 
 
+ENABLED = os.getenv("WHATSAPP_ENABLED", "1") != "0"      # off in a hosted copy: the bridge needs your own computer, Chrome and phone
+
+
 def _node() -> str:
+    if not ENABLED:
+        raise HTTPException(403, "The WhatsApp bridge is turned off on this server. Use the local app for one-click sending.")
     n = shutil.which("node")
     if not n:
         raise HTTPException(503, "Node.js is needed for the WhatsApp bridge. Install Node 18+ and try again.")
@@ -71,7 +76,7 @@ def status(user: User = Depends(require_roles("patient", "caregiver", "doctor"))
     except Exception:
         chrome = False
     login_running = _login_proc is not None and _login_proc.poll() is None
-    return {"linked": bool(st.get("linked")) and chrome, "chrome_open": chrome, "checked_at": st.get("at"), "login_window_open": login_running, "node": bool(shutil.which("node")),
+    return {"linked": bool(st.get("linked")) and chrome, "chrome_open": chrome, "checked_at": st.get("at"), "login_window_open": login_running, "node": ENABLED and bool(shutil.which("node")),
             "note": "Link once: a Chrome window opens on this computer with WhatsApp Web. Scan its QR code with your phone (WhatsApp > Linked devices), then keep that Chrome window open (you can minimise it)."}
 
 

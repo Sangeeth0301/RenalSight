@@ -4,7 +4,9 @@
  * No hosted back end: every request goes to our own server.
  */
 
-export const API_URL: string = (import.meta as any).env?.VITE_API_URL ?? "http://localhost:8000";
+// In a GitHub Codespace the page is served from https://<name>-5173.app.github.dev, so the API is reached through the Vite proxy at /api (same origin).
+const inCodespace = typeof location !== "undefined" && /\.app\.github\.dev$/.test(location.hostname);
+export const API_URL: string = (import.meta as any).env?.VITE_API_URL ?? (inCodespace ? `${location.origin}/api` : "http://localhost:8000");
 export const WS_URL: string = API_URL.replace(/^http/, "ws");
 
 export type Lang = "en" | "ta" | "bn" | "te";
@@ -136,7 +138,7 @@ export interface Rx {
   // doctor view only
   doctor_notes?: string | null; safety?: Safety; snapshot?: Record<string, any>; override_reason?: string | null; reject_reason?: string | null;
 }
-export interface DoctorPatient { id: number; name: string; age: number | null; sex: Sex | null; diabetes: boolean; state: Partial<KidneyState> & { has_data: boolean } }
+export interface DoctorPatient { id: number; name: string; age: number | null; sex: Sex | null; diabetes: boolean; hypertension: boolean; email: string; language: Lang; trend: number[]; last_lab: string | null; labs_count: number; slope_per_year: number | null; state: Partial<KidneyState> & { has_data: boolean } }
 export interface Notification { id: number; kind: "rx_submitted" | "rx_signed" | "rx_rejected" | "patient_linked" | "message"; title: string; body: string; payload: Record<string, any>; read: boolean; created_at: string }
 export interface ThreadMember { id: number; name: string; role: Role; online: boolean }
 export interface Message { id: number; thread_id: number; sender_id: number | null; sender_name: string | null; kind: "text" | "attachment" | "system"; body: string; attachment: any | null; created_at: string; client_id?: string | null }
@@ -293,6 +295,7 @@ export const api = {
 
   // lab report reading
   reportsCapabilities: () => get<{ text: boolean; csv: boolean; pdf_text: boolean; image_ocr: boolean; max_mb: number }>("/reports/capabilities"),
+  reportSamples: (category: string, n = 1) => get<{ category: string; label: string; source: string; samples: { age: number; sex: "male" | "female"; diabetes: boolean; egfr: number; g_stage: string; scr: number; acr: number; sbp: number; dbp: number; hba1c: number; hgb: number; potassium: number; bun: number }[] }>("/reports/samples", { category, n }),
   reportsParseText: (text: string) => { const f = new FormData(); f.append("text", text); return postForm<ParsedReport>("/reports/parse", f); },
   reportsParseFile: (file: File) => { const f = new FormData(); f.append("file", file); return postForm<ParsedReport>("/reports/parse", f); },
 
@@ -306,6 +309,17 @@ export const api = {
   outreachChat: (message: string, language?: Lang) => post<BuddyReply>("/outreach/chat", { message, language }),
   outreachPlan: (b: { region: string; target_people?: number; people_per_camp_day?: number }) => post<{ task_id: number; status: string; plan: CampPlan }>("/tools/outreach_plan_camp", b),
   outreachOverdue: () => post<{ overdue: { patient_id: number; name: string; due: string; days_late: number; tests_per_year: number }[]; count: number }>("/tools/outreach_overdue_patients", {}),
+
+  waStatus: () => get<{ linked: boolean; chrome_open: boolean; checked_at: string | null; login_window_open: boolean; node: boolean; note: string }>("/whatsapp/status"),
+  waAllowed: () => get<{ allowed: string[] }>("/whatsapp/allowed"),
+  waQr: async (): Promise<string | null> => {
+    const res = await fetch(API_URL + "/whatsapp/qr", { headers: auth.token ? { Authorization: `Bearer ${auth.token}` } : {} });
+    return res.ok ? URL.createObjectURL(await res.blob()) : null;
+  },
+  waLogin: () => post<{ started: boolean; message: string }>("/whatsapp/login"),
+  waSend: (b: { text: string; recipients: { name: string }[] }) => post<{ job_id: string; recipients: string[] }>("/whatsapp/send", b),
+  waJob: (id: string) => get<{ id: string; done: boolean; results: { name: string; ok: boolean; error?: string }[] }>(`/whatsapp/jobs/${id}`),
+  translate: (texts: string[], target: Lang) => post<{ target: Lang; available: boolean; translations: string[]; translated: boolean[] }>("/translate", { texts, target }),
 
   // transplant hub
   txMeta: () => get<TransplantMeta>("/transplant/meta"),

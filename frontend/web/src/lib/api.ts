@@ -4,7 +4,9 @@
  * No hosted back end: every request goes to our own server.
  */
 
-export const API_URL: string = (import.meta as any).env?.VITE_API_URL ?? "http://localhost:8000";
+// In a GitHub Codespace the page is served from https://<name>-5173.app.github.dev, so the API is reached through the Vite proxy at /api (same origin).
+const inCodespace = typeof location !== "undefined" && /\.app\.github\.dev$/.test(location.hostname);
+export const API_URL: string = (import.meta as any).env?.VITE_API_URL ?? (inCodespace ? `${location.origin}/api` : "http://localhost:8000");
 export const WS_URL: string = API_URL.replace(/^http/, "ws");
 
 export type Lang = "en" | "ta" | "bn" | "te";

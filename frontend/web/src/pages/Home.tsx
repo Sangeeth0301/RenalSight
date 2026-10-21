@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import { ArrowRight, Building2, DoorOpen, FileText, FlaskConical, Hourglass, MapPinned, MessageCircle, Pill, Send } from "lucide-react";
+import { ArrowRight, Building2, DoorOpen, FileText, FlaskConical, HeartPulse, Hourglass, MapPinned, MessageCircle, Pill, Send } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,10 +12,11 @@ import { currentLang } from "@/i18n";
 import { relTime, tx } from "@/lib/utils";
 import { useSession } from "@/store/session";
 import { Tx } from "@/lib/translate";
+import { Rich } from "@/components/Rich";
 
 const MODULES = [
   { to: "/reports", key: "reportGuidance", icon: FileText, only: "patient" },
-  { to: "/kidney", key: "livingKidney", icon: FlaskConical },
+  { to: "/kidney", key: "livingKidney", icon: HeartPulse },
   { to: "/forecast", key: "timeMachine", icon: Hourglass, only: "patient" },
   { to: "/care", key: "careLab", icon: FlaskConical, only: "patient" },
   { to: "/rx", key: "rxStudio", icon: Pill, only: "patient" },
@@ -100,7 +101,7 @@ export default function Home() {
                 {ask.isPending && <p className="mt-3 text-sm text-muted">{t("buddy.thinking")}</p>}
                 {answer && (
                   <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mt-3 rounded-xl2 bg-slate-50 p-3" data-testid="home-answer">
-                    <Tx as="p" className="whitespace-pre-wrap" text={answer.reply} />
+                    <Tx as="div" text={answer.reply} render={(x) => <Rich text={x} />} />
                     {!answer.ai_online && <p className="mt-2 text-xs text-muted">{t("app.basicMode")}</p>}
                     <button className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-accent" onClick={() => nav("/buddy")}>{t("app.learnMore")} <ArrowRight className="h-4 w-4" /></button>
                   </motion.div>

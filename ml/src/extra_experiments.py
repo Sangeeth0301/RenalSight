@@ -61,7 +61,42 @@ def mc_sensitivity() -> list:
     return res
 
 
+def cohort_levers(n=300, seed=21) -> dict:
+    """Lever effect on the time to eGFR < 30 across simulated patients who start between eGFR 30 and 60 (2 years of quarterly history)."""
+    import pandas as pd
+
+    import progression as pg
+    df = pd.read_csv(ROOT / "data" / "processed" / "nhanes_adults.csv").dropna(subset=["age", "male", "diabetes", "sbp", "hba1c", "acr", "egfr", "hgb"])
+    df = df[(df.egfr >= 30) & (df.egfr <= 60) & (df.age >= 30)].sample(n, random_state=seed).reset_index(drop=True)
+    rng = np.random.default_rng(seed)
+    gains = {k: [] for k in list(tj.LEVERS) + ["all"]}
+    changed = {k: 0 for k in gains}
+    used = 0
+    for _, r in df.iterrows():
+        sim = pg.simulate_patient(rng, r.age, int(r.male), int(r.diabetes), r.sbp, r.hba1c, r.acr, r.egfr, years=2.0, visit_gap_months=3)
+        p = dict(age=float(r.age), male=int(r.male), diabetes=bool(r.diabetes), sbp=float(r.sbp), hba1c=float(r.hba1c), acr=float(r.acr), egfr0=float(sim["egfr"][-1]), hgb=float(r.hgb),
+                 history_t=[float(x) for x in sim["t"]], history_egfr=[float(x) for x in sim["egfr"]])
+        if p["egfr0"] <= 30:
+            continue
+        base = milestone(tj.build_journey(dict(p), levers=[], today=TODAY)["current"], "g4")["median"]
+        if base is None:
+            continue
+        used += 1
+        for lev in gains:
+            lv = list(tj.LEVERS) if lev == "all" else [lev]
+            m = milestone(tj.build_journey(dict(p), levers=lv, today=TODAY)["with_levers"], "g4")["median"]
+            m = 15.0 if m is None else m                  # beyond the 15-year horizon counts as 15
+            g = m - base
+            gains[lev].append(g)
+            changed[lev] += int(g > 0.01)
+    out = {"n": used}
+    for lev, g in gains.items():
+        g = np.array(g)
+        out[lev] = {"share_changed": round(changed[lev] / used, 3), "median_gain": round(float(np.median(g)), 2), "q25": round(float(np.percentile(g, 25)), 2), "q75": round(float(np.percentile(g, 75)), 2)}
+    return out
+
+
 if __name__ == "__main__":
-    R = {"levers": lever_table(), "mc": mc_sensitivity()}
+    R = {"levers": lever_table(), "mc": mc_sensitivity(), "cohort_levers": cohort_levers()}
     (OUT / "results_extra.json").write_text(json.dumps(R, indent=1))
     print(json.dumps(R, indent=1))

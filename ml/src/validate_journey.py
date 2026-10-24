@@ -27,6 +27,7 @@ from lifelines import CoxPHFitter, KaplanMeierFitter  # noqa: E402
 from sklearn.metrics import brier_score_loss, roc_auc_score  # noqa: E402
 from sklearn.model_selection import train_test_split  # noqa: E402
 
+import clinical as clin  # noqa: E402
 import progression as pg  # noqa: E402
 import survival_cox  # noqa: E402
 import trajectory as tj  # noqa: E402
@@ -81,7 +82,7 @@ def part_slopes():
     return pd.DataFrame(rows)
 
 
-def part_kf():
+def part_kf(k=4):
     """Calibration of P(kidney failure within 5 years) on simulated patients who start between eGFR 15 and 45."""
     rng = np.random.default_rng(8)
     df = pd.read_csv(ROOT / "data" / "processed" / "nhanes_adults.csv").dropna(subset=["age", "male", "diabetes", "sbp", "hba1c", "acr", "egfr"])
@@ -91,7 +92,6 @@ def part_kf():
     for _, r in df.iterrows():
         sim = pg.simulate_patient(rng, r.age, int(r.male), int(r.diabetes), r.sbp, r.hba1c, r.acr, r.egfr, years=7.0, visit_gap_months=3)
         t, obs, slope = sim["t"], sim["egfr"], sim["true_slope"]
-        k = 4                                                                                    # origin after 1 year of quarterly visits
         ht, he = t[: k + 1], obs[: k + 1]
         mu0 = pg.prior_slope(r.age, r.diabetes, r.sbp, r.hba1c, r.acr)
         mu_p, sd_p = pg.posterior_slope(mu0, ht, he)
@@ -100,7 +100,9 @@ def part_kf():
         if cur < 15 or true_now < 15:
             continue
         fc = pg.forecast(pg.level_estimate(ht, he), mu_p, sd_p, horizon=5.0, n=1500, seed=2, level_sd=pg.level_uncertainty(ht, he))
-        rows.append(dict(p=fc.prob_kf_5y, y=int(true_future < 15)))
+        fc0 = pg.forecast(cur, mu0, pg.SLOPE_SD, horizon=5.0, n=1500, seed=2)
+        rows.append(dict(p=fc.prob_kf_5y, y=int(true_future < 15), prior=fc0.prob_kf_5y,
+                         kfre=clin.kfre_4var(r.age, int(r.male), cur, max(float(r.acr), 0.1), 5)))
     return pd.DataFrame(rows)
 
 
@@ -210,12 +212,19 @@ def main():
     d = part_slopes()
     print("kidney-failure calibration ...")
     kf = part_kf()
+    kf2 = part_kf(8)
     summary = summarise_slopes(d)
     RES["slopes"] = summary
     fig_slopes(summary)
     print("cox calibration ...")
     RES["cox"], arr = part_cox()
     brier, auc, nkf, prev = fig_calibration(arr, kf)
+    RES["kf_compare"] = {m: {"auc": round(float(roc_auc_score(kf.y, kf[c])), 3), "brier": round(float(brier_score_loss(kf.y, kf[c])), 4), "mean_pred": round(float(kf[c].mean()), 3)}
+                         for m, c in (("KFRE (4-variable)", "kfre"), ("Prior only", "prior"), ("SALT", "p"))}
+    RES["kf_compare"]["prevalence"] = round(prev, 3)
+    RES["kf_compare_2y"] = {m: {"auc": round(float(roc_auc_score(kf2.y, kf2[c])), 3), "brier": round(float(brier_score_loss(kf2.y, kf2[c])), 4)}
+                            for m, c in (("KFRE (4-variable)", "kfre"), ("Prior only", "prior"), ("SALT", "p"))}
+    RES["kf_compare_2y"]["n"] = int(len(kf2)); RES["kf_compare_2y"]["prevalence"] = round(float(kf2.y.mean()), 3)
     RES["kf_calibration"] = {"n": nkf, "prevalence": round(prev, 3), "brier": round(brier, 4), "auc": round(auc, 3)}
     print("journey figures ...")
     j = fig_journey(cox)

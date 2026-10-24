@@ -78,7 +78,7 @@ def part_slopes():
                     j = k + int(round(hz / 0.25))
                     lo, med, hi = band_at(fc, hz)
                     y = float(obs[j])
-                    rows.append(dict(h=h, hz=hz, method=name, slope_err=mu - true_slope, abs_err=abs(med - y), covered=int(lo <= y <= hi)))
+                    rows.append(dict(h=h, hz=hz, method=name, slope_err=mu - true_slope, abs_err=abs(med - y), covered=int(lo <= y <= hi), width=float(hi - lo), diab=int(r.diabetes), low=int(r.egfr < 45)))
     return pd.DataFrame(rows)
 
 
@@ -112,7 +112,8 @@ def summarise_slopes(d: pd.DataFrame):
         gg = g.drop_duplicates(subset=["hz"]) if False else g
         out.setdefault(str(h), {})[m] = {"slope_rmse": round(float(np.sqrt((g[g.hz == 1.0].slope_err ** 2).mean())), 3),
                                           "mae_1y": round(float(g[g.hz == 1.0].abs_err.mean()), 2), "mae_2y": round(float(g[g.hz == 2.0].abs_err.mean()), 2),
-                                          "cover_1y": round(float(g[g.hz == 1.0].covered.mean()), 3), "cover_2y": round(float(g[g.hz == 2.0].covered.mean()), 3)}
+                                          "cover_1y": round(float(g[g.hz == 1.0].covered.mean()), 3), "cover_2y": round(float(g[g.hz == 2.0].covered.mean()), 3),
+                                          "width_2y": round(float(g[g.hz == 2.0].width.mean()), 2)}
     return out
 
 
@@ -215,6 +216,13 @@ def main():
     kf2 = part_kf(8)
     summary = summarise_slopes(d)
     RES["slopes"] = summary
+    sub = {}
+    for h in (1.0, 2.0):
+        for label, mask in (("diabetes", d.diab == 1), ("no diabetes", d.diab == 0), ("eGFR < 45", d.low == 1), ("eGFR >= 45", d.low == 0)):
+            for m in ("Prior only", "Blend + level uncertainty"):
+                g = d[(d.h == h) & (d.hz == 2.0) & (d.method == m) & mask]
+                sub.setdefault(str(h), {}).setdefault(label, {})[m] = {"n": int(len(g)), "mae_2y": round(float(g.abs_err.mean()), 2), "cover_2y": round(float(g.covered.mean()), 3)}
+    RES["subgroups"] = sub
     fig_slopes(summary)
     print("cox calibration ...")
     RES["cox"], arr = part_cox()

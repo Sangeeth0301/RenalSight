@@ -29,3 +29,6 @@ backend/.env.tmp
 frontend/web/dist/
 frontend/web/.vite/
 .logs/
+
+# forecast figure cache (regenerated)
+ml/forecast/results/cache/

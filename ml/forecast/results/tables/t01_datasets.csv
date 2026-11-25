@@ -1,0 +1,7 @@
+Data set,Used for,Size,Access
+NHANES 2005-2014,"survival model, covariate distributions","25,302 adults; 3,292 linked deaths",public
+UCI Chronic Kidney Disease,screening detector,400 patients; 24 attributes,public
+Seed simulated follow-up,demo patients in the app,"3,000 patients; 63,000 visits",simulated
+Benchmark cohorts (rounds 2 and 3),train / calibration / test / shifted,150 / 600 / 1000 / 4 x 400,simulated
+MIMIC-IV Clinical Database Demo 2.2,real longitudinal creatinine,"100 patients; 3,003 creatinine values; 19 used","open, ODbL"
+Wikimedia Commons CKD images,illustration only,"10 images (US, CT, histology)",CC BY / BY-SA / CC0

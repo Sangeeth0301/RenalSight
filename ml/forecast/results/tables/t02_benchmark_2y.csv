@@ -1,0 +1,10 @@
+Method,CRPS,Coverage % (80% band),Band width,Interval score,Brier (5 y KF),AUC (5 y KF),Calibration slope
+Prior only,3.721,62.6,9.9,26.6,0.0995,0.885,0.47
+SALT,3.226,71.9,11.2,21.7,0.0962,0.894,0.45
+SALT-FG (1 regime),2.948,74.5,10.6,19.9,0.0821,0.913,0.63
+SALT-FG (3 regimes),2.945,71.7,10.0,19.8,0.0778,0.921,0.74
+Stack (linear pool),2.932,73.4,10.4,19.7,0.0782,0.922,0.77
+"SALT-FG, recalibrated risk",2.945,71.7,10.0,19.8,0.0776,0.921,1.07
+"Stack, recalibrated risk",2.932,73.4,10.4,19.7,0.0777,0.922,1.07
+SALT-FG + conformal,2.945,78.6,11.9,19.3,0.0778,0.921,0.74
+Stack + conformal,2.932,79.0,11.9,19.3,0.0782,0.922,0.77

@@ -1,0 +1,10 @@
+Real cohort,Method,CRPS,Raw coverage %,LOPO-conformal coverage %,MAE
+"all patients, eGFR 10-95 (n=18)",Prior only,10.09,28,78,11.6
+"all patients, eGFR 10-95 (n=18)",SALT,8.83,45,79,11.0
+"all patients, eGFR 10-95 (n=18)",SALT-FG K=3,8.62,38,79,10.6
+outpatient creatinine only (n=15),Prior only,9.53,29,79,11.0
+outpatient creatinine only (n=15),SALT,8.97,43,78,11.2
+outpatient creatinine only (n=15),SALT-FG K=3,8.60,37,78,10.6
+"CKD range, eGFR 10-65 (n=8)",Prior only,6.95,34,78,8.4
+"CKD range, eGFR 10-65 (n=8)",SALT,5.50,56,80,7.3
+"CKD range, eGFR 10-65 (n=8)",SALT-FG K=3,5.62,47,78,7.2

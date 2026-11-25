@@ -1,0 +1,7 @@
+Lever,Mean 2-y gain in eGFR,25th pct,75th pct,Acts in % of patients
+BP to 125,0.70,0.00,1.18,59
+HbA1c to 7,0.13,0.00,0.00,15
+ACR -35%,0.11,0.00,0.27,40
+SGLT2,0.69,0.26,1.01,95
+All four,1.35,0.37,2.11,95
+true effect of all four (simulated),1.06,0.24,1.56,-

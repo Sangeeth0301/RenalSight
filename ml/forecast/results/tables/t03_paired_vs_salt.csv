@@ -1,0 +1,9 @@
+History,Method,CRPS minus SALT,95% bootstrap interval,Better than SALT?
+1 y,Prior only,+0.320,"[+0.216, +0.431]",no
+1 y,SALT-FG (1 regime),-0.414,"[-0.521, -0.311]",yes
+1 y,SALT-FG (3 regimes),-0.410,"[-0.519, -0.311]",yes
+1 y,Stack (linear pool),-0.431,"[-0.530, -0.340]",yes
+2 y,Prior only,+0.514,"[+0.368, +0.666]",no
+2 y,SALT-FG (1 regime),-0.273,"[-0.352, -0.206]",yes
+2 y,SALT-FG (3 regimes),-0.277,"[-0.356, -0.205]",yes
+2 y,Stack (linear pool),-0.288,"[-0.359, -0.222]",yes

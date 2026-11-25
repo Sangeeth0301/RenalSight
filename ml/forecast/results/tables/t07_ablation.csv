@@ -1,0 +1,14 @@
+Variant,CRPS,Coverage %,Brier,AUC
+Full model (fitted K=3),2.843,76.2,0.0854,0.903
+No outlier model,3.060,70.0,0.0918,0.894
+Regimes disabled,2.954,74.8,0.0904,0.898
+No covariate prior,3.226,72.0,0.0991,0.877
+Covariate prior x0.5,2.945,75.0,0.0873,0.898
+Covariate prior x1.5,2.934,75.5,0.0938,0.904
+Visit noise x2 (misspecified),2.894,83.8,0.0875,0.897
+Visit noise x0.5 (misspecified),2.917,68.1,0.0836,0.909
+Death hazard x2,2.843,76.2,0.0868,0.904
+Death hazard x0.5,2.843,76.2,0.0926,0.898
+Process noise x2,2.848,80.7,0.0852,0.905
+Process noise x0.5,2.852,74.1,0.0864,0.899
+SALT (reference),3.381,68.9,0.1027,0.876

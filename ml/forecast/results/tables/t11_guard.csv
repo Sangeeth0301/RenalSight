@@ -1,0 +1,7 @@
+Input class,Abstention rate %
+normal,2.7
+unit error,100.0
+stale history,100.0
+far outside population,100.0
+missing covariate,100.0
+raw coverage among issued / all forecasts,74.6 / 53.0

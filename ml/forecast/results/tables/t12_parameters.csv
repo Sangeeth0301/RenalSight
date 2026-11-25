@@ -1,0 +1,9 @@
+Parameter,"Fitted value (2 y history, simulated data)"
+q_L (level process variance / y),0.979
+q_b per regime,"0.097, 0.183, 0.389"
+regime offsets g,"0.15, -0.88, -1.78"
+visit noise variance R,4.86
+outlier probability,0.072
+regime persistence per quarter,0.935
+covariate prior scale,1.05
+slope mean-reversion time tau (y),2.69

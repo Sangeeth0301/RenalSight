@@ -47,7 +47,19 @@ def check(res: dict) -> list[tuple[str, str, str]]:
         ok = lo <= v[key] <= hi
         out.append((f"[stress] {name}: adaptive conformal coverage ({lo:.0%}-{hi:.0%}) after adaptation", "PASS" if ok else "FAIL",
                     f"raw {v['FG K=3 raw']:.3f}, static {v['FG K=3 static conformal']:.3f}, adaptive {v['FG K=3 adaptive conformal']:.3f}, after adaptation {v[key]:.3f}"))
-    out.append(("honest abstention (coverage among issued forecasts)", "NOT RUN", "guard layer verified by unit tests only; needs a labelled-OOD evaluation"))
+    from pathlib import Path
+    g = Path(__file__).parent / "results" / "guard_eval.json"
+    if g.exists():
+        G = json.load(open(g))
+        st = G["stream"]
+        ok = st["coverage_issued_raw"] >= 0.78
+        out.append(("honest abstention: coverage of issued forecasts >= nominal - 2 points (raw 80% bands)", "PASS" if ok else "FAIL",
+                    f"issued {st['coverage_issued_raw']:.3f} vs all {st['coverage_all_raw']:.3f}; abstained {st['abstained']} of {st['n']}"))
+        cl = G["classes"]
+        out.append(("guard (supplementary, not pre-set): abstains on bad inputs, rarely on normal ones", "INFO",
+                    "abstain " + ", ".join(f"{k} {v['abstain_rate']:.0%}" for k, v in cl.items())))
+    else:
+        out.append(("honest abstention (coverage among issued forecasts)", "NOT RUN", "run python -m forecast.guard_eval"))
     return out
 
 

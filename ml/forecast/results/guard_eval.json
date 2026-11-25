@@ -1,0 +1,32 @@
+{
+ "n_per_class": 300,
+ "ood_threshold": 5.090755475746085,
+ "classes": {
+  "normal": {
+   "abstain_rate": 0.026666666666666616
+  },
+  "unit error": {
+   "abstain_rate": 1.0,
+   "top_reason": "eGFR already in the kidney-failure range: refer to a clinician"
+  },
+  "stale history": {
+   "abstain_rate": 1.0,
+   "top_reason": "last laboratory value is older than 18 months"
+  },
+  "far outside population": {
+   "abstain_rate": 1.0,
+   "top_reason": "patient is unlike the training population (out of distribution)"
+  },
+  "missing covariate": {
+   "abstain_rate": 1.0,
+   "top_reason": "covariate age missing or out of range"
+  }
+ },
+ "stream": {
+  "n": 279,
+  "issued": 139,
+  "abstained": 140,
+  "coverage_all_raw": 0.5295698924731183,
+  "coverage_issued_raw": 0.7464028776978417
+ }
+}

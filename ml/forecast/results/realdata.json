@@ -1,0 +1,140 @@
+{
+ "all patients, eGFR 10-95": {
+  "n_patients": 18,
+  "n_forecasts": 1733,
+  "methods": {
+   "Prior only": {
+    "crps": 10.086557847663004,
+    "coverage_raw": 0.27524523946912866,
+    "coverage_lopo_conformal": 0.7830351990767456,
+    "width": 8.848742023145284,
+    "mae": 11.595541347481165
+   },
+   "SALT": {
+    "crps": 8.826225098817908,
+    "coverage_raw": 0.45412579342181186,
+    "coverage_lopo_conformal": 0.7899596076168494,
+    "width": 14.703427292486701,
+    "mae": 10.988484393833303
+   },
+   "SALT-FG K=3": {
+    "crps": 8.619981025890844,
+    "coverage_raw": 0.3837276399307559,
+    "coverage_lopo_conformal": 0.7945758799769186,
+    "width": 11.956983622492997,
+    "mae": 10.567176350899594,
+    "crps_diff_vs_SALT": {
+     "mean": 0.10401816454613162,
+     "lo": -2.8122746740748124,
+     "hi": 2.707290594643737,
+     "patients_better": 10,
+     "patients": 18
+    },
+    "crps_diff_vs_Prior only": {
+     "mean": -1.5023444555469376,
+     "lo": -4.470263490785826,
+     "hi": 1.1983955297466387,
+     "patients_better": 13,
+     "patients": 18
+    }
+   }
+  },
+  "ckd_coded_patients": 10,
+  "defaults": {
+   "sbp": 130.0,
+   "acr": 15.0
+  }
+ },
+ "outpatient creatinine only": {
+  "n_patients": 15,
+  "n_forecasts": 1426,
+  "methods": {
+   "Prior only": {
+    "crps": 9.528554420618363,
+    "coverage_raw": 0.28751753155680226,
+    "coverage_lopo_conformal": 0.7875175315568023,
+    "width": 8.85476317863662,
+    "mae": 11.0124914329393
+   },
+   "SALT": {
+    "crps": 8.97273313683703,
+    "coverage_raw": 0.426367461430575,
+    "coverage_lopo_conformal": 0.7791023842917251,
+    "width": 14.825614566269456,
+    "mae": 11.21928588826742
+   },
+   "SALT-FG K=3": {
+    "crps": 8.603153168489936,
+    "coverage_raw": 0.3695652173913043,
+    "coverage_lopo_conformal": 0.7819074333800842,
+    "width": 11.908084445179991,
+    "mae": 10.569125397524537,
+    "crps_diff_vs_SALT": {
+     "mean": 0.5227534619410104,
+     "lo": -0.635312534597104,
+     "hi": 2.1586626252414143,
+     "patients_better": 9,
+     "patients": 15
+    },
+    "crps_diff_vs_Prior only": {
+     "mean": -0.19567312657800323,
+     "lo": -1.475735512997008,
+     "hi": 1.4385759867467365,
+     "patients_better": 10,
+     "patients": 15
+    }
+   }
+  },
+  "ckd_coded_patients": 9,
+  "defaults": {
+   "sbp": 130.0,
+   "acr": 15.0
+  }
+ },
+ "CKD range, eGFR 10-65": {
+  "n_patients": 8,
+  "n_forecasts": 644,
+  "methods": {
+   "Prior only": {
+    "crps": 6.946748821047166,
+    "coverage_raw": 0.34316770186335405,
+    "coverage_lopo_conformal": 0.7763975155279503,
+    "width": 8.83897836901923,
+    "mae": 8.413123024021063
+   },
+   "SALT": {
+    "crps": 5.504713420089881,
+    "coverage_raw": 0.5636645962732919,
+    "coverage_lopo_conformal": 0.8027950310559007,
+    "width": 12.846091078285955,
+    "mae": 7.3438155648421155
+   },
+   "SALT-FG K=3": {
+    "crps": 5.623760412316603,
+    "coverage_raw": 0.47360248447204967,
+    "coverage_lopo_conformal": 0.781055900621118,
+    "width": 11.09207883136279,
+    "mae": 7.187258898814759,
+    "crps_diff_vs_SALT": {
+     "mean": -0.37691328710536254,
+     "lo": -1.719995210155613,
+     "hi": 0.6594635726608786,
+     "patients_better": 5,
+     "patients": 8
+    },
+    "crps_diff_vs_Prior only": {
+     "mean": -1.4381547553020897,
+     "lo": -3.1735482244644135,
+     "hi": 0.08023691313959976,
+     "patients_better": 6,
+     "patients": 8
+    }
+   }
+  },
+  "ckd_coded_patients": 7,
+  "defaults": {
+   "sbp": 130.0,
+   "acr": 15.0
+  }
+ }
+}

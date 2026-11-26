@@ -1,0 +1,7 @@
+Target,Real data,Engine,Source
+US kidney-failure incidence (per million),363-386,363,USRDS 2019-2021
+eGFR < 60 at 60-69 (pseudo-cohort),8.7%,11.2%,NHANES
+eGFR < 60 at 70-79 (pseudo-cohort),25.3%,25.1%,NHANES
+mean eGFR at 60-69,82.1,83.8,NHANES
+mean eGFR at 70-79,71.6,71.2,NHANES
+"India incidence (per million), not used in fitting",151-232,217,Bhopal population study

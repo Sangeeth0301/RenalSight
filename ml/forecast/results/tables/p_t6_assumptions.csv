@@ -1,0 +1,7 @@
+Item,Assumption
+Population,India adults 2024 by age and sex (World Bank / UN projections); covariates and CKD pattern from NHANES; closed cohort (no new entrants)
+Dynamics,SALT-FG patient-level equations with calibrated population scales
+Death,Poisson hazard fitted on NHANES linked mortality
+Programmes,"coverage of eligible people; trial-range effects (ACR -35%, SGLT2 -30% of excess decline, BP to 125, HbA1c to 7)"
+Uncertainty,"10 replicates: resampled people, prior scale, treatment effects and death hazard drawn per replicate"
+Not modelled,"effects on cardiovascular death, cost, adherence over time, India-specific covariates, new adults entering"

@@ -1,0 +1,417 @@
+{
+ "all patients, eGFR 10-95": {
+  "n_patients": 18,
+  "n_forecasts": 1733,
+  "methods": {
+   "Gradient boosting quantiles (LOPO)": {
+    "crps": 8.186764580912364,
+    "mae": 11.22589729664431,
+    "coverage_raw": 0.6630121177149452,
+    "coverage_lopo_conformal": 0.8003462204270052,
+    "width": 28.344405315723584
+   },
+   "Linear mixed model (LOPO)": {
+    "crps": 8.031219831484716,
+    "mae": 11.049276871575966,
+    "coverage_raw": 0.7576457010963646,
+    "coverage_lopo_conformal": 0.7859203693017888,
+    "width": 33.979795614040036
+   },
+   "Persistence (LOPO)": {
+    "crps": 8.635805435814364,
+    "mae": 11.797499925675833,
+    "coverage_raw": 0.7761107905366417,
+    "coverage_lopo_conformal": 0.7813040969417195,
+    "width": 37.609653033937654
+   },
+   "Prior only": {
+    "crps": 10.086557847663004,
+    "mae": 11.595541347481165,
+    "coverage_raw": 0.27524523946912866,
+    "coverage_lopo_conformal": 0.7830351990767456,
+    "width": 8.848742023145284
+   },
+   "SALT": {
+    "crps": 8.826225098817908,
+    "mae": 10.988484393833303,
+    "coverage_raw": 0.45412579342181186,
+    "coverage_lopo_conformal": 0.7899596076168494,
+    "width": 14.703427292486701
+   },
+   "SALT-FG K=3": {
+    "crps": 8.619981025890844,
+    "mae": 10.567176350899592,
+    "coverage_raw": 0.3837276399307559,
+    "coverage_lopo_conformal": 0.7945758799769186,
+    "width": 11.956983622492997
+   },
+   "SALT-FG adapted (LOPO)": {
+    "crps": 7.539154776126093,
+    "mae": 10.304585705726764,
+    "coverage_raw": 0.6820542412002308,
+    "coverage_lopo_conformal": 0.7911136757068667,
+    "width": 24.276375934557308,
+    "diff_vs_Gradient boosting quantiles (LOPO)": {
+     "mean": -0.5089921470474562,
+     "lo": -2.27376870880868,
+     "hi": 1.2539140596479397,
+     "patients_better": 13,
+     "patients": 18
+    },
+    "diff_vs_Linear mixed model (LOPO)": {
+     "mean": -0.3712119066100945,
+     "lo": -1.1591958014642538,
+     "hi": 0.30954360327277297,
+     "patients_better": 10,
+     "patients": 18
+    },
+    "diff_vs_Persistence (LOPO)": {
+     "mean": -1.0366386395566913,
+     "lo": -2.728126553972589,
+     "hi": 0.5859978251262299,
+     "patients_better": 15,
+     "patients": 18
+    },
+    "diff_vs_Prior only": {
+     "mean": -3.0373513710038256,
+     "lo": -5.4657610825982745,
+     "hi": -1.0152223770713673,
+     "patients_better": 15,
+     "patients": 18
+    },
+    "diff_vs_SALT": {
+     "mean": -1.430988750910756,
+     "lo": -3.8553252583174693,
+     "hi": 0.49258520669643774,
+     "patients_better": 11,
+     "patients": 18
+    },
+    "diff_vs_SALT-FG K=3": {
+     "mean": -1.5350069154568882,
+     "lo": -2.724531949710771,
+     "hi": -0.6507563431468202,
+     "patients_better": 15,
+     "patients": 18
+    },
+    "diff_vs_SALT-FG adapted + LMM pool": {
+     "mean": 0.004631995246302312,
+     "lo": -0.32552728633681227,
+     "hi": 0.3164911127855704,
+     "patients_better": 9,
+     "patients": 18
+    }
+   },
+   "SALT-FG adapted + LMM pool": {
+    "crps": 7.585154310798393,
+    "mae": 10.39921154712053,
+    "coverage_raw": 0.7374495095210617,
+    "coverage_lopo_conformal": 0.7870744373918062,
+    "width": 30.297324165399893
+   }
+  },
+  "adaptation": {
+   "per_patient": {
+    "10001725": {
+     "R_mult": 4.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.3
+    },
+    "10002428": {
+     "R_mult": 4.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.3
+    },
+    "10003400": {
+     "R_mult": 4.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.3
+    },
+    "10004457": {
+     "R_mult": 4.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.3
+    },
+    "10012853": {
+     "R_mult": 4.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.3
+    },
+    "10014354": {
+     "R_mult": 2.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.3
+    },
+    "10015860": {
+     "R_mult": 4.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.3
+    },
+    "10018081": {
+     "R_mult": 4.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.3
+    },
+    "10019003": {
+     "R_mult": 4.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.3
+    },
+    "10020306": {
+     "R_mult": 4.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.3
+    },
+    "10023117": {
+     "R_mult": 4.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.3
+    },
+    "10023239": {
+     "R_mult": 4.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.3
+    },
+    "10024043": {
+     "R_mult": 4.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.3
+    },
+    "10027602": {
+     "R_mult": 4.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.3
+    },
+    "10035631": {
+     "R_mult": 4.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.3
+    },
+    "10037928": {
+     "R_mult": 4.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.3
+    },
+    "10039708": {
+     "R_mult": 4.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.3
+    },
+    "10039997": {
+     "R_mult": 4.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.3
+    },
+    "10040025": {
+     "R_mult": 4.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.3
+    }
+   },
+   "all_patients": {
+    "R_mult": 4.0,
+    "qL_mult": 30.0,
+    "pi_out": 0.3
+   },
+   "grid": {
+    "R": [
+     1.0,
+     2.0,
+     4.0,
+     8.0,
+     16.0
+    ],
+    "q_L": [
+     1.0,
+     4.0,
+     12.0,
+     30.0
+    ],
+    "pi_out": [
+     0.04,
+     0.15,
+     0.3
+    ]
+   }
+  }
+ },
+ "CKD range, eGFR 10-65": {
+  "n_patients": 8,
+  "n_forecasts": 644,
+  "methods": {
+   "Gradient boosting quantiles (LOPO)": {
+    "crps": 7.243558661734355,
+    "mae": 9.688962970380365,
+    "coverage_raw": 0.5481366459627329,
+    "coverage_lopo_conformal": 0.7748447204968945,
+    "width": 19.344646437130304
+   },
+   "Linear mixed model (LOPO)": {
+    "crps": 6.119492095195019,
+    "mae": 8.42092546762306,
+    "coverage_raw": 0.7934782608695652,
+    "coverage_lopo_conformal": 0.7841614906832298,
+    "width": 27.824630589678296
+   },
+   "Persistence (LOPO)": {
+    "crps": 6.5187506167242235,
+    "mae": 8.637255766603689,
+    "coverage_raw": 0.7267080745341615,
+    "coverage_lopo_conformal": 0.6785714285714286,
+    "width": 24.981159421920243
+   },
+   "Prior only": {
+    "crps": 6.946748821047166,
+    "mae": 8.413123024021063,
+    "coverage_raw": 0.34316770186335405,
+    "coverage_lopo_conformal": 0.7763975155279503,
+    "width": 8.83897836901923
+   },
+   "SALT": {
+    "crps": 5.504713420089881,
+    "mae": 7.343815564842113,
+    "coverage_raw": 0.5636645962732919,
+    "coverage_lopo_conformal": 0.8027950310559007,
+    "width": 12.846091078285955
+   },
+   "SALT-FG K=3": {
+    "crps": 5.623760412316604,
+    "mae": 7.187258898814759,
+    "coverage_raw": 0.47360248447204967,
+    "coverage_lopo_conformal": 0.781055900621118,
+    "width": 11.09207883136279
+   },
+   "SALT-FG adapted (LOPO)": {
+    "crps": 5.2812028411914245,
+    "mae": 7.157203513452544,
+    "coverage_raw": 0.6692546583850931,
+    "coverage_lopo_conformal": 0.7639751552795031,
+    "width": 17.377338025394792,
+    "diff_vs_Gradient boosting quantiles (LOPO)": {
+     "mean": -1.3772257233970926,
+     "lo": -2.492812777456115,
+     "hi": -0.34212468281825825,
+     "patients_better": 6,
+     "patients": 8
+    },
+    "diff_vs_Linear mixed model (LOPO)": {
+     "mean": -0.9170466929385113,
+     "lo": -2.4081357434401562,
+     "hi": 0.49703098021299946,
+     "patients_better": 6,
+     "patients": 8
+    },
+    "diff_vs_Persistence (LOPO)": {
+     "mean": -0.7051473649357315,
+     "lo": -1.4255947070784118,
+     "hi": 0.14799293182991757,
+     "patients_better": 6,
+     "patients": 8
+    },
+    "diff_vs_Prior only": {
+     "mean": -1.786931968089876,
+     "lo": -3.3072146676149257,
+     "hi": -0.610359802317468,
+     "patients_better": 7,
+     "patients": 8
+    },
+    "diff_vs_SALT": {
+     "mean": -0.725690499893149,
+     "lo": -1.8645892584249717,
+     "hi": 0.13530804000493896,
+     "patients_better": 6,
+     "patients": 8
+    },
+    "diff_vs_SALT-FG K=3": {
+     "mean": -0.34877721278778656,
+     "lo": -0.7997801795826702,
+     "hi": 0.02284617463181593,
+     "patients_better": 5,
+     "patients": 8
+    },
+    "diff_vs_SALT-FG adapted + LMM pool": {
+     "mean": -0.021567109685670605,
+     "lo": -0.5717505437016258,
+     "hi": 0.5588118676387474,
+     "patients_better": 4,
+     "patients": 8
+    }
+   },
+   "SALT-FG adapted + LMM pool": {
+    "crps": 5.321340107752262,
+    "mae": 7.249702648532076,
+    "coverage_raw": 0.8198757763975155,
+    "coverage_lopo_conformal": 0.7732919254658385,
+    "width": 24.501124905731334
+   }
+  },
+  "adaptation": {
+   "per_patient": {
+    "10012853": {
+     "R_mult": 2.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.15
+    },
+    "10015860": {
+     "R_mult": 2.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.15
+    },
+    "10019003": {
+     "R_mult": 2.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.15
+    },
+    "10023117": {
+     "R_mult": 2.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.15
+    },
+    "10037928": {
+     "R_mult": 2.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.15
+    },
+    "10039708": {
+     "R_mult": 4.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.15
+    },
+    "10039997": {
+     "R_mult": 2.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.15
+    },
+    "10040025": {
+     "R_mult": 2.0,
+     "qL_mult": 30.0,
+     "pi_out": 0.15
+    }
+   },
+   "all_patients": {
+    "R_mult": 2.0,
+    "qL_mult": 30.0,
+    "pi_out": 0.15
+   },
+   "grid": {
+    "R": [
+     1.0,
+     2.0,
+     4.0,
+     8.0,
+     16.0
+    ],
+    "q_L": [
+     1.0,
+     4.0,
+     12.0,
+     30.0
+    ],
+    "pi_out": [
+     0.04,
+     0.15,
+     0.3
+    ]
+   }
+  }
+ }
+}

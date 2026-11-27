@@ -170,7 +170,9 @@ def build():
                 "shared real cohort exists yet, so a claim of being the best in the field cannot be made from this evidence."),
               P("<b>What is distinctive.</b> No single compared method gives all of: a calibrated forecast distribution, hidden progression regimes, kidney "
                 "failure competing with death, paired what-if scenarios, conformal guarantees, an input guard that abstains, and a population projection from "
-                "the same equations. The decisive next step is a large credentialed real cohort (full MIMIC-IV or a partner hospital) with the same protocol.")]
+                "the same equations. The decisive next step is a large credentialed real cohort (full MIMIC-IV or a partner hospital) with the same protocol."),
+              P("The literature review that positions SALT-FG against prior work (comparative table, capability matrix, theoretical properties and critical "
+                "analysis) is a separate document: <font face='Courier'>results/RenalSight_Literature_Review.pdf</font>.")]
     story += [NextPageTemplate("L"), PageBreak()]
 
     # 2 architecture

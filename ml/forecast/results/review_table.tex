@@ -1,0 +1,28 @@
+% IEEEtran: needs \usepackage{booktabs,array}
+\begin{table*}[t]
+\centering
+\caption{Comparative analysis of prior work and the gap relative to SALT-FG}
+\label{tab:related}
+\footnotesize
+\begin{tabular}{@{}p{0.13\textwidth}p{0.15\textwidth}p{0.22\textwidth}p{0.21\textwidth}p{0.22\textwidth}@{}}
+\toprule
+\textbf{Work} & \textbf{Setting and data} & \textbf{Forecast mechanism} & \textbf{Uncertainty, action and safety treatment} & \textbf{Gap relative to SALT-FG} \\
+\midrule
+Tangri et al. [1]; KFRE meta-analysis [2] & CKD G3--G5 cohorts; 31 cohorts, $>$700k patients in the meta-analysis & Cox model on age, sex, eGFR, ACR at one visit; 2- and 5-year risk & Point risk; validated discrimination and calibration; no actions; death treated as censoring & No trajectory, no use of the eGFR history, no competing death, no what-if \\
+Liu et al. [3] & Multinational CKD G3--G5 cohorts & Multistate competing-risk model (KDpredict) for kidney failure and death & Calibrated risks of both outcomes; no actions & Risk of events only; eGFR path and stage timing not forecast; no conformal guarantee \\
+Walker et al. [4] & CKD with multimorbidity & KFRE re-assessed against a competing-risk reference & Shows KFRE over-predicts when death competes & Evaluation study; motivates but does not provide a trajectory model \\
+van den Brand et al. [5] & CKD cohort, repeated eGFR & Compares last eGFR, slope, mixed-model and joint models for kidney failure & Model comparison on discrimination & Forecast target is the event; no calibrated eGFR bands, regimes or actions \\
+Rizopoulos [7]; Liao et al. [6] & Joint longitudinal and survival data; CKD application & Linear mixed model linked to a hazard (joint model); dynamic prediction & Bayesian posterior intervals; no actions & Single smooth progression pattern; Gaussian errors; no outlier model, no abstention, no distribution-free coverage \\
+Kammer et al. [8]; Inker et al. [9] & CKD with diabetes; trial meta-analysis & Mixed models of eGFR slope with biomarkers; slope as surrogate endpoint & Treatment effect on mean slope (trials) & Population-average slopes; no individual probabilistic forecast \\
+Begun et al. [10] & Patients with decreased renal function & Continuous-time non-homogeneous multistate Markov chain over stages & Transition intensities with covariates & Stages, not eGFR; memoryless within a stage; no individual update from new labs \\
+Hoerger et al. [11] & US population, NHANES-based & CKD Health Policy Model: stage microsimulation with assumed annual eGFR decrements & Scenario projections of prevalence & Population only; decline assumed, not learned from lab histories; no individual face \\
+Toma\v{s}ev et al. [12] & US veterans' EHR & Recurrent deep network on continuous EHR; AKI within 48 h & Risk score with operating thresholds & Acute injury, hours ahead; not chronic trajectories; no actions or coverage guarantee \\
+DT-GPT, Makarov et al. [13] & NSCLC, ICU and Alzheimer's datasets & Fine-tuned biomedical LLM on text-encoded histories; multi-variable trajectories & Sampled trajectories; no formal calibration & Needs large data and GPUs; no competing risks, no guarantee, no abstention; not kidney-specific \\
+G-Transformer, Xiong et al. [14] & Simulated and ICU data & Transformer with g-computation for counterfactual outcomes under dynamic regimes & Counterfactual trajectories; uncertainty from sampling & No calibrated bands, no outcome competition, no input guard \\
+Tassopoulou et al. [15] & Alzheimer's imaging biomarkers, irregular visits & Any trajectory predictor plus conformal bands with time-varying scores & Nominal coverage, group-conditional bands & Calibration layer only; no state model, regimes, events or actions \\
+GenCast, Price et al. [16] & Global weather & Diffusion-model ensemble forecasts & Ensemble skill and CRPS; no actions & Not clinical; shows ensemble + CRPS as the standard for probabilistic forecasting, which we adopt \\
+\midrule
+\textbf{SALT-FG (Ours)} & Simulated benchmark (mis-specified world); 18 real MIMIC-IV patients; NHANES population re-weighted to India & Switching local-linear-trend state space: level, slope, 3 hidden regimes (HMM) with covariate (Bayesian-network) prior and outlier mixture; Rao-Blackwellised particle filter; ensemble rollouts with kidney failure competing with death & Split/Mondrian CQR and adaptive conformal bands; guard layer that abstains with reasons; paired what-if with common random numbers; population programmes from the same equations & Real evidence small (18 patients); 4 of 19 pre-set criteria failed; effects of actions assumed from trials; one lab (eGFR) modelled \\
+\bottomrule
+\end{tabular}
+\end{table*}

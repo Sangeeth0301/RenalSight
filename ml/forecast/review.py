@@ -308,6 +308,12 @@ def build():
              "It does not yet support the statement that SALT-FG is more accurate than every published method; that requires a large shared real cohort, "
              "which is our next step.")]
 
+    st += [Paragraph("VII. Conclusion", H1),
+           P("The literature offers strong but separate pieces: validated risk equations, history-aware slope and joint models, policy Markov models, expressive "
+             "deep forecasters and distribution-free calibration. SALT-FG brings them together in one interpretable probabilistic model with stated guarantees. "
+             "The comparison shows a clear gap in integration, the theory explains why the combination is sound, and the experiments are encouraging but small. "
+             "Validation on a large real longitudinal CKD cohort is the decisive test.")]
+
     doc = BaseDocTemplate(str(OUT), pagesize=A4, title="CKD trajectory forecasting: literature review and research gap", author="Niranjan S, Kowshik P L, Jaganath R, Sangeeth S")
     W, H = A4; LW_, LH = landscape(A4)
     doc.addPageTemplates([PageTemplate("P", [Frame(2.0 * cm, 1.8 * cm, W - 4.0 * cm, H - 3.6 * cm)], onPage=header, pagesize=A4),

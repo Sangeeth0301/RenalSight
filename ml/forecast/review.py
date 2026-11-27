@@ -278,6 +278,15 @@ def build():
              "vectorised population engine that reuses the same state equations (G5). Table II shows that each capability exists somewhere in the literature, "
              "but no prior approach has more than four of the ten; SALT-FG has nine fully and one partly.")]
 
+    st += [Paragraph("V. Empirical Positioning", H1),
+           P("<b>Simulated benchmark</b> (mis-specified world, design frozen, fresh seeds): CRPS 2.95 against 3.23 for the SALT trajectory baseline with 2 years of "
+             "history (difference \u22120.28, 95% interval \u22120.36 to \u22120.20); 5-year kidney-failure Brier 0.078 against 0.116 for KFRE and AUC 0.921 against "
+             "0.889; conformal coverage 76\u201380% for a nominal 80%; the guard abstains on all corrupted inputs and 2.7% of normal ones."),
+           P("<b>Real patients</b> (MIMIC-IV demo, 18 patients, every learning method trained leave-one-patient-out): CRPS 7.54 for SALT-FG with noise scales "
+             "adapted on the other patients, against 8.03 for a linear mixed model, 8.19 for gradient-boosted quantile regression, 8.64 for persistence and "
+             "8.83 for SALT; in the CKD range 5.28 against 5.50, 6.12 and 7.24. After leave-one-patient-out conformal calibration all methods reach about 79% "
+             "coverage, so the ranking reflects sharpness at equal reliability.")]
+
     doc = BaseDocTemplate(str(OUT), pagesize=A4, title="CKD trajectory forecasting: literature review and research gap", author="Niranjan S, Kowshik P L, Jaganath R, Sangeeth S")
     W, H = A4; LW_, LH = landscape(A4)
     doc.addPageTemplates([PageTemplate("P", [Frame(2.0 * cm, 1.8 * cm, W - 4.0 * cm, H - 3.6 * cm)], onPage=header, pagesize=A4),

@@ -230,6 +230,42 @@ def build():
                                    "marked partial because it covers 18 patients.", CAP),
            NextPageTemplate("P"), PageBreak()]
 
+    st += [Paragraph("III. Theoretical Formulation and Properties of SALT-FG", H1),
+           Paragraph("A. Model", H2),
+           P("For person <i>i</i> with covariates <i>x</i>, let <i>L<sub>t</sub></i> be latent kidney function, <i>b<sub>t</sub></i> its slope and "
+             "<i>S<sub>t</sub></i> \u2208 {1,2,3} a hidden regime (slow, middle, rapid decline), a Markov-switching construction " + c("hamilton") + ". On a quarterly grid with step \u0394:"),
+           Paragraph("L<sub>t+1</sub> = L<sub>t</sub> + \u0394 b<sub>t</sub> + \u03b7<sub>t</sub>,  &nbsp; b<sub>t+1</sub> = \u03c1 b<sub>t</sub> + (1\u2212\u03c1) m<sub>S</sub>(x) + "
+                     "\u03be<sub>t</sub>,  &nbsp; P(S<sub>t+1</sub>=k | S<sub>t</sub>=j) = T<sub>jk</sub>(x)", EQ),
+           Paragraph("y<sub>t</sub> | L<sub>t</sub> ~ (1\u2212\u03c0) N(L<sub>t</sub>, R) + \u03c0 N(L<sub>t</sub>, R<sub>out</sub>)", EQ),
+           P("Here m<sub>k</sub>(x) is the regime-specific mean slope built from a covariate (Bayesian-network) prior, T(x) is a sticky transition matrix tilted "
+             "towards faster regimes by a risk score, and the two-component observation model absorbs acute spikes. Kidney failure is the first time L falls "
+             "below 15 and death arrives with a hazard that rises with age and falling L; the two compete. Actions a enter through do(x\u2192x<sub>a</sub>), "
+             "which changes m<sub>k</sub> and T."),
+           Paragraph("B. Properties", H2),
+           P(f"<b>Proposition 1 (nesting).</b> With K = 1, \u03c0 = 0, \u03c1 \u2192 1 and process variances \u2192 0, SALT-FG reduces to a Gaussian random intercept "
+             f"and slope model for the individual, i.e. the longitudinal part of mixed and joint models {c('riz')}. <i>Consequence:</i> on the fitting data the "
+             f"maximised marginal likelihood of SALT-FG is at least that of the nested model. This is a statement about expressiveness, not test accuracy, which "
+             f"is why accuracy is judged on held-out data (Section V)."),
+           P(f"<b>Proposition 2 (Rao-Blackwellisation).</b> Conditional on a regime path S<sub>1:t</sub>, the model is linear-Gaussian per mixture component, so "
+             f"(L, b) is integrated exactly by a Kalman filter and only S is sampled {c('rbpf')}. For any test function f, by the law of total variance "
+             f"Var[E(f | S)] \u2264 Var[f], so the Rao-Blackwellised estimator has no larger variance than a particle filter that samples (L, b, S). We verified "
+             f"exactness numerically against the closed-form Kalman filter when K = 1."),
+           P(f"<b>Proposition 3 (coverage).</b> If calibration and test patients are exchangeable, the split-conformal band built from CQR scores "
+             f"s = max(l \u2212 y, y \u2212 u) satisfies P(y \u2208 [l \u2212 q, u + q]) \u2265 1 \u2212 \u03b1 with q the \u2308(n+1)(1\u2212\u03b1)\u2309-th smallest score {c('cqr')}; "
+             f"computed within groups (Mondrian), the guarantee holds per group. Leave-one-patient-out calibration on real data keeps exchangeability at the "
+             f"patient level. Under shift, adaptive conformal inference with step \u03b3 gives |T<sup>\u22121</sup>\u03a3 err<sub>t</sub> \u2212 \u03b1| \u2264 "
+             f"(max(\u03b1<sub>1</sub>, 1\u2212\u03b1<sub>1</sub>) + \u03b3)/(\u03b3T) for any sequence {c('aci')}, so long-run coverage holds without exchangeability."),
+           P(f"<b>Proposition 4 (competing risks).</b> The ensemble estimates the cause-specific cumulative incidence F<sub>KF</sub>(h) = P(T<sub>KF</sub> \u2264 h, "
+             f"T<sub>KF</sub> \u2264 T<sub>D</sub>) directly from M simulated paths, with Monte Carlo standard error at most 1/(2\u221aM). Treating death as censoring "
+             f"estimates, under independent latent times, P(T<sub>KF</sub> \u2264 h) in a world without death, which is never smaller than F<sub>KF</sub>(h) {c('fine')}; this is the over-prediction "
+             f"documented for KFRE in multimorbid people {c('walker')}."),
+           P(f"<b>Proposition 5 (paired what-if).</b> The treated and untreated futures share the same random numbers. Since Var(Y<sub>a</sub> \u2212 Y<sub>0</sub>) = "
+             f"Var Y<sub>a</sub> + Var Y<sub>0</sub> \u2212 2 Cov(Y<sub>a</sub>, Y<sub>0</sub>) and the coupled paths are positively correlated, the variance of the "
+             f"estimated effect falls relative to independent sampling {c('crn')}; in practice the Monte Carlo error of the effect is below 0.05 mL/min."),
+           P(f"<b>Proposition 6 (proper scoring).</b> CRPS is strictly proper {c('gneiting')}: its expectation is minimised only by the true predictive "
+             f"distribution. Tuning, stacking and evaluation on CRPS therefore reward calibration and sharpness together, unlike mean absolute error, which "
+             f"ignores the band.")]
+
     doc = BaseDocTemplate(str(OUT), pagesize=A4, title="CKD trajectory forecasting: literature review and research gap", author="Niranjan S, Kowshik P L, Jaganath R, Sangeeth S")
     W, H = A4; LW_, LH = landscape(A4)
     doc.addPageTemplates([PageTemplate("P", [Frame(2.0 * cm, 1.8 * cm, W - 4.0 * cm, H - 3.6 * cm)], onPage=header, pagesize=A4),

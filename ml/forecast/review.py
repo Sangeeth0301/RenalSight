@@ -321,4 +321,26 @@ def build():
     doc.addPageTemplates([PageTemplate("P", [Frame(2.0 * cm, 1.8 * cm, W - 4.0 * cm, H - 3.6 * cm)], onPage=header, pagesize=A4),
                           PageTemplate("L", [Frame(1.6 * cm, 1.6 * cm, LW_ - 3.2 * cm, LH - 3.0 * cm)], onPage=header, pagesize=landscape(A4))])
     doc.build(st)
+    write_tex()
     return OUT
+
+
+def _tex(s: str) -> str:
+    import re
+    s = re.sub(r"</?[bi]>", "", s).replace("&gt;", "$>$").replace("&amp;", "\\&")
+    s = s.replace("\u2013", "--").replace("\u2014", "---").replace("\u0161", "\\v{s}").replace("\u2019", "'").replace("%", "\\%")
+    return s
+
+
+def write_tex():
+    lines = [r"% IEEEtran: needs \usepackage{booktabs,array}",
+             r"\begin{table*}[t]", r"\centering", r"\caption{Comparative analysis of prior work and the gap relative to SALT-FG}", r"\label{tab:related}",
+             r"\footnotesize", r"\begin{tabular}{@{}p{0.13\textwidth}p{0.15\textwidth}p{0.22\textwidth}p{0.21\textwidth}p{0.22\textwidth}@{}}", r"\toprule",
+             r"\textbf{Work} & \textbf{Setting and data} & \textbf{Forecast mechanism} & \textbf{Uncertainty, action and safety treatment} & \textbf{Gap relative to SALT-FG} \\",
+             r"\midrule"]
+    for r in ROWS:
+        lines.append(" & ".join(_tex(x) for x in r) + r" \\")
+    lines += [r"\midrule", " & ".join([r"\textbf{SALT-FG (Ours)}"] + [_tex(x) for x in OURS[1:]]) + r" \\", r"\bottomrule", r"\end{tabular}", r"\end{table*}"]
+    TEX.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+

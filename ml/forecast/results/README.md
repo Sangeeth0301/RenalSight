@@ -97,6 +97,8 @@ All tables are in `tables/` as CSV and in `tables/tables.md`; image versions are
 | `ablation.json`, `guard_eval.json`, `realdata.json` | ablation, guard evaluation, real-data check |
 | `figures/` | 170 PNG images |
 | `realdata_plus.json` | real-data comparison with mixed-model, boosting and persistence baselines |
+| `RenalSight_Literature_Review.pdf`, `review_table.tex` | literature review, research-gap tables and theory (`python -m forecast.review`) |
+| `RenalSight_Forecast_Results.pdf` | every result in one document (`python -m forecast.compendium`) |
 | `tables/` | 14 tables (CSV and Markdown) |
 
 ## Limits (please read)

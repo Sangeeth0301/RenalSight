@@ -130,3 +130,25 @@ MATRIX = [
 ]
 
 
+def header(c_, d):
+    W, H = d.pagesize
+    c_.saveState(); c_.setFont("Cambria", 8); c_.setFillColor(colors.HexColor("#475569"))
+    c_.drawString(1.8 * cm, 1.0 * cm, "RenalSight: literature review and research-gap analysis")
+    c_.drawRightString(W - 1.8 * cm, 1.0 * cm, str(d.page)); c_.restoreState()
+
+
+def rule_table(data, widths, bold_last=True):
+    t = Table(data, colWidths=widths, repeatRows=1)
+    st = [("LINEABOVE", (0, 0), (-1, 0), 1.0, colors.black), ("LINEBELOW", (0, 0), (-1, 0), 0.6, colors.black),
+          ("LINEBELOW", (0, -1), (-1, -1), 1.0, colors.black), ("VALIGN", (0, 0), (-1, -1), "TOP"),
+          ("TOPPADDING", (0, 0), (-1, -1), 2.2), ("BOTTOMPADDING", (0, 0), (-1, -1), 2.2), ("LEFTPADDING", (0, 0), (-1, -1), 3), ("RIGHTPADDING", (0, 0), (-1, -1), 3)]
+    if bold_last:
+        st.append(("LINEABOVE", (0, -1), (-1, -1), 0.6, colors.black))
+    t.setStyle(TableStyle(st))
+    return t
+
+
+def P(s):
+    return Paragraph(s, BODY)
+
+

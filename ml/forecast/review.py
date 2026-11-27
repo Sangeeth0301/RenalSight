@@ -68,3 +68,11 @@ REFS = [
     "P. Glasserman and D. D. Yao, \u201cSome guidelines and guarantees for common random numbers,\u201d <i>Manage. Sci.</i>, vol. 38, no. 6, pp. 884\u2013908, 1992.",
     "L. A. Inker et al., \u201cNew creatinine- and cystatin C-based equations to estimate GFR without race,\u201d <i>N. Engl. J. Med.</i>, vol. 385, no. 19, pp. 1737\u20131749, 2021.",
 ]
+R = {k: i + 1 for i, k in enumerate(["kfre", "kfre16", "liu", "walker", "brand", "liao", "riz", "kammer", "inker19", "begun", "hoerger", "tomasev", "makarov",
+                                      "gtrans", "tasso", "gencast", "cqr", "aci", "hamilton", "rbpf", "gneiting", "fine", "crn", "ckdepi"])}
+
+
+def c(*keys):
+    return "[" + ", ".join(str(R[k]) for k in keys) + "]"
+
+

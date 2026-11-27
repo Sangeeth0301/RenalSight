@@ -314,6 +314,8 @@ def build():
              "The comparison shows a clear gap in integration, the theory explains why the combination is sound, and the experiments are encouraging but small. "
              "Validation on a large real longitudinal CKD cohort is the decisive test.")]
 
+    st += [Paragraph("References", H1)] + [Paragraph(f"[{i}] {r}", REF) for i, r in enumerate(REFS, 1)]
+
     doc = BaseDocTemplate(str(OUT), pagesize=A4, title="CKD trajectory forecasting: literature review and research gap", author="Niranjan S, Kowshik P L, Jaganath R, Sangeeth S")
     W, H = A4; LW_, LH = landscape(A4)
     doc.addPageTemplates([PageTemplate("P", [Frame(2.0 * cm, 1.8 * cm, W - 4.0 * cm, H - 3.6 * cm)], onPage=header, pagesize=A4),

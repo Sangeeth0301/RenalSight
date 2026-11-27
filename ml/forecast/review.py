@@ -152,3 +152,27 @@ def P(s):
     return Paragraph(s, BODY)
 
 
+def build():
+    st = []
+    st += [Paragraph("Forecasting Chronic Kidney Disease Trajectories: A Critical Review of the Literature and the Research Gap Addressed by SALT-FG",
+                     ParagraphStyle("t", parent=H1, fontSize=15, leading=19, alignment=TA_CENTER)),
+           Paragraph("Niranjan S, Kowshik P L, Jaganath R, Sangeeth S", ParagraphStyle("a", parent=BODY, alignment=TA_CENTER, fontSize=10.5)),
+           Spacer(1, 6),
+           P("<b><i>Abstract</i></b>\u2014Predicting how kidney function will evolve is central to chronic kidney disease (CKD) care, yet the literature splits into "
+             "separate traditions: static risk equations, longitudinal slope and joint models, multistate Markov and policy microsimulation models, deep sequence "
+             "and foundation models, and distribution-free uncertainty quantification. We review representative work from each tradition, compare them on a common "
+             "set of mechanisms and safety treatments, and state the gap each leaves. We then position SALT-FG, a switching state-space forecaster with conformal "
+             "calibration and an abstaining guard, against this body of work, give its theoretical properties with proofs or proof sketches, and assess critically "
+             "where the evidence supports it and where it does not. The review shows that no prior method combines a calibrated, history-driven eGFR "
+             "distribution, hidden progression regimes, death competing with kidney failure, paired what-if forecasts, distribution-free coverage, abstention and "
+             "a population projection in one model; SALT-FG does, and on real patients it records the lowest forecast error among eight methods, though with a "
+             "sample too small to establish superiority statistically."),
+           P("<b><i>Index Terms</i></b>\u2014chronic kidney disease, eGFR trajectory, state-space model, hidden Markov model, particle filter, competing risks, "
+             "conformal prediction, counterfactual forecasting, microsimulation.")]
+
+    doc = BaseDocTemplate(str(OUT), pagesize=A4, title="CKD trajectory forecasting: literature review and research gap", author="Niranjan S, Kowshik P L, Jaganath R, Sangeeth S")
+    W, H = A4; LW_, LH = landscape(A4)
+    doc.addPageTemplates([PageTemplate("P", [Frame(2.0 * cm, 1.8 * cm, W - 4.0 * cm, H - 3.6 * cm)], onPage=header, pagesize=A4),
+                          PageTemplate("L", [Frame(1.6 * cm, 1.6 * cm, LW_ - 3.2 * cm, LH - 3.0 * cm)], onPage=header, pagesize=landscape(A4))])
+    doc.build(st)
+    return OUT

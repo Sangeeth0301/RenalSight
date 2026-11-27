@@ -209,6 +209,27 @@ def build():
              f"GenCast {c('gencast')} established ensembles scored by the continuous ranked probability score (CRPS) {c('gneiting')} as the standard for "
              f"probabilistic forecasting. These are calibration layers or evaluation standards, not disease models.")]
 
+    # tables on landscape pages
+    st += [NextPageTemplate("L"), PageBreak(),
+           Paragraph("TABLE I. Comparative analysis of prior work and the gap relative to SALT-FG", CAP)]
+    hdr = ["Work", "Setting and data", "Forecast mechanism", "Uncertainty, action and safety treatment", "Gap relative to SALT-FG"]
+    data = [[Paragraph(h, CELLB) for h in hdr]] + [[Paragraph(x, CELL) for x in r] for r in ROWS] + [[Paragraph(x, CELLB if i == 0 else CELL) for i, x in enumerate(OURS)]]
+    LW = landscape(A4)[0] - 3.2 * cm
+    st.append(rule_table(data, [w * LW for w in (0.15, 0.17, 0.24, 0.22, 0.22)]))
+    st += [PageBreak(), Paragraph("TABLE II. Capability matrix (\u25cf fully, \u25d0 partly, \u25cb not addressed)", CAP)]
+    sym = ParagraphStyle("s", parent=CELL, alignment=TA_CENTER, fontName=SERIF, fontSize=10)
+    data = [[Paragraph("Approach", CELLB)] + [Paragraph(h, ParagraphStyle("hc", parent=CELLB, alignment=TA_CENTER)) for h in CAPS]]
+    for name, v in MATRIX:
+        data.append([Paragraph(name, CELL)] + [Paragraph(x, sym) for x in v])
+    data.append([Paragraph("Prior approaches fully addressing it", CELL)] + [Paragraph(str(sum(m[1][j] == Y for m in MATRIX[:-1])) + "/10", sym) for j in range(len(CAPS))])
+    t = rule_table(data, [0.17 * LW] + [0.083 * LW] * len(CAPS), bold_last=False)
+    t.setStyle(TableStyle([("LINEABOVE", (0, -2), (-1, -2), 0.6, colors.black), ("LINEBELOW", (0, -2), (-1, -2), 0.6, colors.black),
+                           ("BACKGROUND", (0, -2), (-1, -2), colors.HexColor("#f1f5f9"))]))
+    st.append(t)
+    st += [Spacer(1, 6), Paragraph("The last row counts, for each capability, how many of the ten prior approaches address it fully. The real-data check of SALT-FG is "
+                                   "marked partial because it covers 18 patients.", CAP),
+           NextPageTemplate("P"), PageBreak()]
+
     doc = BaseDocTemplate(str(OUT), pagesize=A4, title="CKD trajectory forecasting: literature review and research gap", author="Niranjan S, Kowshik P L, Jaganath R, Sangeeth S")
     W, H = A4; LW_, LH = landscape(A4)
     doc.addPageTemplates([PageTemplate("P", [Frame(2.0 * cm, 1.8 * cm, W - 4.0 * cm, H - 3.6 * cm)], onPage=header, pagesize=A4),

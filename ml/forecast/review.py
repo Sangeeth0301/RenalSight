@@ -76,3 +76,19 @@ def c(*keys):
     return "[" + ", ".join(str(R[k]) for k in keys) + "]"
 
 
+# ----------------------------------------------------------------------------- Table I: comparative analysis (work, setting, mechanism, uncertainty/action/safety, gap)
+ROWS = [
+    (f"Tangri et al. {c('kfre')}; KFRE meta-analysis {c('kfre16')}", "CKD G3\u2013G5 cohorts; 31 cohorts, &gt;700k patients in the meta-analysis",
+     "Cox model on age, sex, eGFR, ACR at one visit; 2- and 5-year risk", "Point risk; validated discrimination and calibration; no actions; death treated as censoring",
+     "No trajectory, no use of the eGFR history, no competing death, no what-if"),
+    (f"Liu et al. {c('liu')}", "Multinational CKD G3\u2013G5 cohorts", "Multistate competing-risk model (KDpredict) for kidney failure and death",
+     "Calibrated risks of both outcomes; no actions", "Risk of events only; eGFR path and stage timing not forecast; no conformal guarantee"),
+    (f"Walker et al. {c('walker')}", "CKD with multimorbidity", "KFRE re-assessed against a competing-risk reference",
+     "Shows KFRE over-predicts when death competes", "Evaluation study; motivates but does not provide a trajectory model"),
+    (f"van den Brand et al. {c('brand')}", "CKD cohort, repeated eGFR", "Compares last eGFR, slope, mixed-model and joint models for kidney failure",
+     "Model comparison on discrimination", "Forecast target is the event; no calibrated eGFR bands, regimes or actions"),
+    (f"Rizopoulos {c('riz')}; Liao et al. {c('liao')}", "Joint longitudinal and survival data; CKD application", "Linear mixed model linked to a hazard (joint model); dynamic prediction",
+     "Bayesian posterior intervals; no actions", "Single smooth progression pattern; Gaussian errors; no outlier model, no abstention, no distribution-free coverage"),
+    (f"Kammer et al. {c('kammer')}; Inker et al. {c('inker19')}", "CKD with diabetes; trial meta-analysis", "Mixed models of eGFR slope with biomarkers; slope as surrogate endpoint",
+     "Treatment effect on mean slope (trials)", "Population-average slopes; no individual probabilistic forecast"),
+]

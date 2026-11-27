@@ -170,6 +170,16 @@ def build():
            P("<b><i>Index Terms</i></b>\u2014chronic kidney disease, eGFR trajectory, state-space model, hidden Markov model, particle filter, competing risks, "
              "conformal prediction, counterfactual forecasting, microsimulation.")]
 
+    st += [Paragraph("I. Introduction and Scope", H1),
+           P("CKD affects roughly one adult in ten, and the decision a clinician faces is rarely \u201cwill this person reach kidney failure?\u201d alone. It is "
+             "\u201cwhere will this person's kidney function be in one, two or five years, how sure are we, what is more likely first, dialysis or death, and what "
+             "would change it?\u201d Kidney function is followed as eGFR estimated from serum creatinine " + c("ckdepi") + ". A useful forecaster therefore needs four properties at once: it must use the person's own laboratory history, express the "
+             "future as a calibrated distribution rather than a point, account for death competing with kidney failure, and answer counterfactual questions "
+             "about care actions. A fifth property, refusing to forecast when the input cannot be trusted, matters for any tool that reaches patients."),
+           P("This review is narrative and structured, not a systematic review: we selected representative, highly cited or recent (2019\u20132026) work from "
+             "nephrology, biostatistics, machine learning and probabilistic forecasting that a reviewer of a CKD forecasting paper would expect to see. "
+             "Each work is compared on the same axes (Table I), scored on ten capabilities (Table II), and the gaps are synthesised in Section IV.")]
+
     doc = BaseDocTemplate(str(OUT), pagesize=A4, title="CKD trajectory forecasting: literature review and research gap", author="Niranjan S, Kowshik P L, Jaganath R, Sangeeth S")
     W, H = A4; LW_, LH = landscape(A4)
     doc.addPageTemplates([PageTemplate("P", [Frame(2.0 * cm, 1.8 * cm, W - 4.0 * cm, H - 3.6 * cm)], onPage=header, pagesize=A4),

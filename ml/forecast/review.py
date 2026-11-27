@@ -180,6 +180,35 @@ def build():
              "nephrology, biostatistics, machine learning and probabilistic forecasting that a reviewer of a CKD forecasting paper would expect to see. "
              "Each work is compared on the same axes (Table I), scored on ten capabilities (Table II), and the gaps are synthesised in Section IV.")]
 
+    st += [Paragraph("II. Taxonomy of Prior Work", H1),
+           Paragraph("A. Static risk equations", H2),
+           P(f"The kidney failure risk equation (KFRE) {c('kfre')} predicts 2- and 5-year kidney failure from age, sex, eGFR and albuminuria at one visit and has "
+             f"been validated across 31 cohorts {c('kfre16')}. Its strength is scale of validation; its limits are structural. It ignores the eGFR history, so two "
+             f"people with the same current eGFR but opposite slopes receive the same risk, and it treats death as censoring, which inflates risk in older, "
+             f"multimorbid people {c('walker')}. Liu et al. {c('liu')} address the second limit with a multistate model that predicts kidney failure and death "
+             f"jointly, but still forecast events, not the path of kidney function."),
+           Paragraph("B. Longitudinal slope, mixed and joint models", H2),
+           P(f"Mixed models describe each person's eGFR as a population line plus a random intercept and slope; the eGFR slope is now an accepted surrogate "
+             f"endpoint {c('inker19')} and biomarkers can modulate it {c('kammer')}. Joint models {c('riz')} link such a longitudinal sub-model to a hazard and give "
+             f"dynamic predictions that update as labs arrive; Liao et al. {c('liao')} apply this to CKD, and van den Brand et al. {c('brand')} show that using the "
+             f"trajectory improves kidney-failure prediction over a single value. Their common assumption is a single smooth progression pattern with Gaussian "
+             f"errors. Real eGFR series contain acute-kidney-injury spikes, assay noise and changes of pace, which these models absorb as noise or bias."),
+           Paragraph("C. Multistate Markov and policy microsimulation", H2),
+           P(f"Begun et al. {c('begun')} model transitions among stages, renal replacement therapy and death as a continuous-time non-homogeneous Markov chain, and "
+             f"the CDC CKD Health Policy Model {c('hoerger')} simulates the US population through stages to project burden. These are the tools of health policy, "
+             f"but the state is a coarse stage, the chain is memoryless within a stage, and decline rates are assumed rather than learned from individual lab "
+             f"histories; they cannot forecast a particular person."),
+           Paragraph("D. Deep sequence and foundation models", H2),
+           P(f"Deep recurrent models predict acute kidney injury from continuous EHR streams {c('tomasev')}; DT-GPT {c('makarov')} fine-tunes a language model to "
+             f"forecast multi-variable trajectories; G-Transformer {c('gtrans')} predicts counterfactual outcomes under dynamic treatment regimes. These models "
+             f"handle many variables and complex interactions, but they need large training sets, give no formal coverage guarantee, do not model death competing "
+             f"with the outcome, and do not abstain."),
+           Paragraph("E. Uncertainty quantification and probabilistic forecasting", H2),
+           P(f"Conformalised quantile regression {c('cqr')} and adaptive conformal inference {c('aci')} give finite-sample or long-run coverage without "
+             f"distributional assumptions, and Tassopoulou et al. {c('tasso')} extend conformal bands to irregularly timed biomarker trajectories. In weather, "
+             f"GenCast {c('gencast')} established ensembles scored by the continuous ranked probability score (CRPS) {c('gneiting')} as the standard for "
+             f"probabilistic forecasting. These are calibration layers or evaluation standards, not disease models.")]
+
     doc = BaseDocTemplate(str(OUT), pagesize=A4, title="CKD trajectory forecasting: literature review and research gap", author="Niranjan S, Kowshik P L, Jaganath R, Sangeeth S")
     W, H = A4; LW_, LH = landscape(A4)
     doc.addPageTemplates([PageTemplate("P", [Frame(2.0 * cm, 1.8 * cm, W - 4.0 * cm, H - 3.6 * cm)], onPage=header, pagesize=A4),

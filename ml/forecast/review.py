@@ -266,6 +266,18 @@ def build():
              f"distribution. Tuning, stacking and evaluation on CRPS therefore reward calibration and sharpness together, unlike mean absolute error, which "
              f"ignores the band.")]
 
+    st += [Paragraph("IV. Synthesis: The Research Gap", H1),
+           P("Reading Tables I and II together, five gaps stand out. <b>G1</b>: methods that forecast the eGFR path (mixed, joint, deep models) assume one smooth "
+             "pattern or learn patterns without an interpretable state, while methods with states (multistate Markov) discard the continuous eGFR. <b>G2</b>: "
+             "death competing with kidney failure is handled by event models (Liu et al., multistate chains) but not by trajectory models. <b>G3</b>: "
+             "distribution-free coverage exists as a separate layer (CQR, ACI, conformal bands) and is not built into any kidney model. <b>G4</b>: none of the "
+             "reviewed kidney models abstains on untrustworthy input. <b>G5</b>: individual and population forecasting use different models, so policy "
+             "projections are not consistent with individual forecasts."),
+           P("SALT-FG is designed to close G1\u2013G5 in one model: hidden regimes over a continuous latent eGFR (G1), simulated competition between kidney failure "
+             "and death (G2), conformal and adaptive conformal bands on top of the ensemble (G3), a guard layer that abstains with stated reasons (G4), and a "
+             "vectorised population engine that reuses the same state equations (G5). Table II shows that each capability exists somewhere in the literature, "
+             "but no prior approach has more than four of the ten; SALT-FG has nine fully and one partly.")]
+
     doc = BaseDocTemplate(str(OUT), pagesize=A4, title="CKD trajectory forecasting: literature review and research gap", author="Niranjan S, Kowshik P L, Jaganath R, Sangeeth S")
     W, H = A4; LW_, LH = landscape(A4)
     doc.addPageTemplates([PageTemplate("P", [Frame(2.0 * cm, 1.8 * cm, W - 4.0 * cm, H - 3.6 * cm)], onPage=header, pagesize=A4),

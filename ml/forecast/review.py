@@ -344,3 +344,5 @@ def write_tex():
     TEX.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+if __name__ == "__main__":
+    print(build())

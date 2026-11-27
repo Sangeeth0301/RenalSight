@@ -287,6 +287,27 @@ def build():
              "8.83 for SALT; in the CKD range 5.28 against 5.50, 6.12 and 7.24. After leave-one-patient-out conformal calibration all methods reach about 79% "
              "coverage, so the ranking reflects sharpness at equal reliability.")]
 
+    st += [Paragraph("VI. Critical Analysis", H1),
+           Paragraph("A. Where the evidence supports SALT-FG", H2),
+           P("It is the only reviewed approach that unifies trajectory, regimes, competing outcomes, counterfactuals, guarantees, abstention and population "
+             "projection; it beats an established risk equation and a trajectory baseline on a simulated benchmark with pre-registered criteria; and on real "
+             "patients it has the lowest error of eight methods in both cohorts and with two random seeds. Its theory gives coverage guarantees that deep "
+             "trajectory models do not offer."),
+           Paragraph("B. Where it does not (threats to validity)", H2),
+           P("(i) <b>Sample size.</b> 18 real patients is far from the hundreds of thousands behind KFRE; against the mixed model, boosting and SALT the 95% "
+             "intervals of the per-patient difference include zero. (ii) <b>Simulator dependence.</b> Most evidence comes from a world we built; it is "
+             "deliberately mis-specified, but a simulator cannot reveal what it does not contain. (iii) <b>Failed criteria.</b> Four of 19 pre-set criteria failed: "
+             "what-if effect error at both history lengths, one 2-year coverage value (76.2% against 77\u201383%) and honest abstention. (iv) <b>Assumed effects.</b> "
+             "Action effects come from trial effect sizes, so what-if outputs are scenarios. (v) <b>Single biomarker.</b> Only eGFR is modelled dynamically; "
+             "deep models such as DT-GPT forecast many variables jointly. (vi) <b>Population face.</b> It uses US covariates re-weighted to India and a "
+             "closed cohort. (vii) <b>No head-to-head with deep models</b> on a shared real cohort."),
+           Paragraph("C. Defensible claim", H2),
+           P("The evidence supports this statement: <i>SALT-FG is, to our knowledge, the first CKD forecaster that combines a calibrated eGFR trajectory "
+             "distribution with hidden progression regimes, death competing with kidney failure, paired what-if forecasts, distribution-free coverage, abstention "
+             "and a population projection in a single model, and in our experiments it achieved the lowest forecast error among the compared methods.</i> "
+             "It does not yet support the statement that SALT-FG is more accurate than every published method; that requires a large shared real cohort, "
+             "which is our next step.")]
+
     doc = BaseDocTemplate(str(OUT), pagesize=A4, title="CKD trajectory forecasting: literature review and research gap", author="Niranjan S, Kowshik P L, Jaganath R, Sangeeth S")
     W, H = A4; LW_, LH = landscape(A4)
     doc.addPageTemplates([PageTemplate("P", [Frame(2.0 * cm, 1.8 * cm, W - 4.0 * cm, H - 3.6 * cm)], onPage=header, pagesize=A4),

@@ -91,4 +91,23 @@ ROWS = [
      "Bayesian posterior intervals; no actions", "Single smooth progression pattern; Gaussian errors; no outlier model, no abstention, no distribution-free coverage"),
     (f"Kammer et al. {c('kammer')}; Inker et al. {c('inker19')}", "CKD with diabetes; trial meta-analysis", "Mixed models of eGFR slope with biomarkers; slope as surrogate endpoint",
      "Treatment effect on mean slope (trials)", "Population-average slopes; no individual probabilistic forecast"),
+    (f"Begun et al. {c('begun')}", "Patients with decreased renal function", "Continuous-time non-homogeneous multistate Markov chain over stages",
+     "Transition intensities with covariates", "Stages, not eGFR; memoryless within a stage; no individual update from new labs"),
+    (f"Hoerger et al. {c('hoerger')}", "US population, NHANES-based", "CKD Health Policy Model: stage microsimulation with assumed annual eGFR decrements",
+     "Scenario projections of prevalence", "Population only; decline assumed, not learned from lab histories; no individual face"),
+    (f"Toma\u0161ev et al. {c('tomasev')}", "US veterans' EHR", "Recurrent deep network on continuous EHR; AKI within 48 h", "Risk score with operating thresholds",
+     "Acute injury, hours ahead; not chronic trajectories; no actions or coverage guarantee"),
+    (f"DT-GPT, Makarov et al. {c('makarov')}", "NSCLC, ICU and Alzheimer's datasets", "Fine-tuned biomedical LLM on text-encoded histories; multi-variable trajectories",
+     "Sampled trajectories; no formal calibration", "Needs large data and GPUs; no competing risks, no guarantee, no abstention; not kidney-specific"),
+    (f"G-Transformer, Xiong et al. {c('gtrans')}", "Simulated and ICU data", "Transformer with g-computation for counterfactual outcomes under dynamic regimes",
+     "Counterfactual trajectories; uncertainty from sampling", "No calibrated bands, no outcome competition, no input guard"),
+    (f"Tassopoulou et al. {c('tasso')}", "Alzheimer's imaging biomarkers, irregular visits", "Any trajectory predictor plus conformal bands with time-varying scores",
+     "Nominal coverage, group-conditional bands", "Calibration layer only; no state model, regimes, events or actions"),
+    (f"GenCast, Price et al. {c('gencast')}", "Global weather", "Diffusion-model ensemble forecasts", "Ensemble skill and CRPS; no actions",
+     "Not clinical; shows ensemble + CRPS as the standard for probabilistic forecasting, which we adopt"),
 ]
+OURS = ("<b>RenalSight SALT-FG (ours)</b>", "Simulated benchmark (mis-specified world); 18 real MIMIC-IV patients; NHANES population re-weighted to India",
+        "Switching local-linear-trend state space: level, slope, 3 hidden regimes (HMM) with covariate (Bayesian-network) prior and outlier mixture; Rao-Blackwellised particle filter; ensemble rollouts with kidney failure competing with death",
+        "Split/Mondrian CQR and adaptive conformal bands; guard layer that abstains with reasons; paired what-if with common random numbers; population programmes from the same equations",
+        "Real evidence small (18 patients); 4 of 19 pre-set criteria failed; effects of actions assumed from trials; one lab (eGFR) modelled")
+

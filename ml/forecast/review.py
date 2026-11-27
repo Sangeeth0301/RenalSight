@@ -111,3 +111,22 @@ OURS = ("<b>RenalSight SALT-FG (ours)</b>", "Simulated benchmark (mis-specified 
         "Split/Mondrian CQR and adaptive conformal bands; guard layer that abstains with reasons; paired what-if with common random numbers; population programmes from the same equations",
         "Real evidence small (18 patients); 4 of 19 pre-set criteria failed; effects of actions assumed from trials; one lab (eGFR) modelled")
 
+# ----------------------------------------------------------------------------- Table II: capability matrix (\u25cf yes, \u25d0 partial, \u25cb no)
+CAPS = ["Uses eGFR history", "Probabilistic eGFR path", "Hidden progression regimes", "Robust to lab outliers", "Death competes with kidney failure",
+        "What-if for actions", "Distribution-free coverage", "Abstains on bad input", "Population projection", "Real-data check"]
+Y, P_, N = "\u25cf", "\u25d0", "\u25cb"
+MATRIX = [
+    ("KFRE [1], [2]", [N, N, N, N, P_, N, N, N, N, Y]),
+    ("Liu et al. [3]", [N, N, N, N, Y, N, N, N, N, Y]),
+    ("Joint models [6], [7]", [Y, Y, N, N, P_, N, N, N, N, Y]),
+    ("Mixed-model slopes [8], [9]", [Y, P_, N, N, N, P_, N, N, N, Y]),
+    ("Multistate Markov [10]", [P_, N, P_, N, Y, N, N, N, P_, Y]),
+    ("CDC policy model [11]", [N, N, N, N, Y, P_, N, N, Y, Y]),
+    ("Deep EHR, AKI [12]", [Y, N, N, P_, N, N, N, N, N, Y]),
+    ("DT-GPT [13]", [Y, Y, N, P_, N, N, N, N, N, Y]),
+    ("G-Transformer [14]", [Y, Y, N, N, N, Y, N, N, N, P_]),
+    ("Conformal bands [15]", [Y, Y, N, N, N, N, Y, N, N, Y]),
+    ("<b>SALT-FG (ours)</b>", [Y, Y, Y, Y, Y, Y, Y, Y, Y, P_]),
+]
+
+
